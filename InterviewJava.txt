@@ -98,4 +98,318 @@ Functional programming: Lambda expressions are an important part of functional p
 In short, lambda expressions provide a more concise and readable way of defining a function, they can be used in a variety of situations, and can make your code more maintainable and performant.
 
 ======================================================================================================================================================
-4.
+4.Inner classes in Java
+
+There are four types of inner classes in Java:
+Member Inner Class
+Local Inner Class:
+Anonymous Inner Class
+Static Inner Class
+
+Member Inner Class: A member inner class is defined inside another class, and it has access to all of the members of the outer class, including private members.
+// Java Program to Demonstrate Nested class 
+ 
+// Class 1
+// Helper classes
+class Outer {
+ 
+    // Class 2
+    // Simple nested inner class
+    class Inner {
+ 
+        // show() method of inner class
+        public void show()
+        {
+ 
+            // Print statement
+            System.out.println("In a nested class method");
+        }
+    }
+}
+ 
+// Class 2
+// Main class
+class Main {
+ 
+    // Main driver method
+    public static void main(String[] args)
+    {
+ 
+        // Note how inner class object is created inside
+        // main()
+        Outer.Inner in = new Outer().new Inner();
+ 
+        // Calling show() method over above object created
+        in.show();
+    }
+}
+
+
+
+We can not have a static method in a nested inner class because an inner class is implicitly associated with an object of its outer class so it cannot define any static method for itself. For example, the following program doesn’t compile. But Since JAVA Version 16 we can have static members in our inner class also.
+// Class 1
+// Outer class
+class Outer {
+ 
+    // Method defined inside outer class
+    void outerMethod()
+    {
+ 
+        // Print statement
+        System.out.println("inside outerMethod");
+    }
+ 
+    // Class 2
+    // Inner class
+    class Inner {
+ 
+        // Main driver method
+        public static void main(String[] args)
+        {
+ 
+            // Display message for better readability
+            System.out.println("inside inner class Method");
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------------------
+
+Local Inner Class: A local inner class is defined inside a method, and it has access to all of the members of the outer class, including private members.
+
+class Outer {
+   void outerMethod() {
+      final int x=98;
+      System.out.println("inside outerMethod");
+      class Inner {
+         void innerMethod() {
+            System.out.println("x = "+x);
+         }
+      }
+      Inner y = new Inner();
+      y.innerMethod();
+   }
+}
+class MethodLocalVariableDemo {
+    public static void main(String[] args){
+      Outer x = new Outer();
+      x.outerMethod();
+    }
+}
+
+
+
+// declared within a method of outer class
+ 
+// Class 1
+// Outer class
+class Outer {
+ 
+    // Method inside outer class
+    void outerMethod()
+    {
+ 
+        // Print statement
+        System.out.println("inside outerMethod");
+ 
+        // Class 2
+        // Inner class
+        // It is local to outerMethod()
+        class Inner {
+ 
+            // Method defined inside inner class
+            void innerMethod()
+            {
+ 
+                // Print statement whenever inner class is
+                // called
+                System.out.println("inside innerMethod");
+            }
+        }
+ 
+        // Creating object of inner class
+        Inner y = new Inner();
+ 
+        // Calling over method defined inside it
+        y.innerMethod();
+    }
+}
+ 
+// Class 3
+// Main class
+class GFG {
+ 
+    // Main driver method
+    public static void main(String[] args)
+    {
+ 
+        // Creating object of outer class inside main()
+        // method
+        Outer x = new Outer();
+ 
+        // Calling over the same method
+        // as we did for inner class above
+        x.outerMethod();
+    }
+}
+
+
+----------------------------------------------------------------------------------------------------------------
+
+
+Anonymous Inner Class: An anonymous inner class is defined and instantiated in a single statement, and it cannot have a name. It's commonly used as a method argument.
+
+Anonymous inner classes are declared without any name at all. They are created in two ways. 
+
+As a subclass of the specified type
+As an implementer of the specified interface
+
+
+// Declaration Without any Name 
+// As a subclass of the specified type
+ 
+// Importing required classes
+import java.util.*;
+ 
+// Class 1
+// Helper class
+class Demo {
+ 
+    // Method of helper class
+    void show()
+    {
+        // Print statement
+        System.out.println(
+            "i am in show method of super class");
+    }
+}
+ 
+// Class 2
+// Main class
+class Flavor1Demo {
+ 
+    //  An anonymous class with Demo as base class
+    static Demo d = new Demo() {
+        // Method 1
+        // show() method
+        void show()
+        {
+            // Calling method show() via super keyword
+            // which refers to parent class
+            super.show();
+ 
+            // Print statement
+            System.out.println("i am in Flavor1Demo class");
+        }
+    };
+ 
+    // Method 2
+    // Main driver method
+    public static void main(String[] args)
+    {
+        // Calling show() method inside main() method
+        d.show();
+    }
+}
+
+
+
+
+// Declaration Without Any Name
+// As an implementer of Specified interface
+ 
+// Interface
+interface Hello {
+ 
+    // Method defined inside interface
+    void show();
+}
+ 
+// Main class
+class GFG {
+ 
+    // Class implementing interface
+    static Hello h = new Hello() {
+       
+        // Method 1
+        // show() method inside main class
+        public void show()
+        {
+            // Print statement
+            System.out.println("i am in anonymous class");
+        }
+    };
+ 
+    // Method 2
+    // Main driver method
+    public static void main(String[] args)
+    {
+        // Calling show() method inside main() method
+        h.show();
+    }
+}
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------
+
+Static Inner Class: A static inner class is defined inside another class, but it does not have access to the instance variables of the outer class. It can be used as a top-level class.
+Static nested classes are not technically inner classes. They are like a static member of outer class. 
+
+
+// Importing required classes
+import java.util.*;
+ 
+// Class 1
+// Outer class
+class Outer {
+ 
+    // Method
+    private static void outerMethod()
+    {
+ 
+        // Print statement
+        System.out.println("inside outerMethod");
+    }
+ 
+    // Class 2
+    // Static inner class
+    static class Inner {
+ 
+        public static void display()
+        {
+ 
+            // Print statement
+            System.out.println("inside inner class Method");
+ 
+            // Calling method inside main() method
+            outerMethod();
+        }
+    }
+}
+ 
+// Class 3
+// Main class
+class GFG {
+ 
+    // Main driver method
+    public static void main(String args[])
+    {
+ 
+        // Calling method static display method rather than an instance of that class.
+        Outer.Inner.display();
+    }
+}
+}
+
+There are certain advantages associated with inner classes are as follows:
+
+Making code clean and readable.
+Private methods of the outer class can be accessed, so bringing a new dimension and making it closer to the real world.
+Optimizing the code module.
+
+================================================================================================================================================================
+
+5.
