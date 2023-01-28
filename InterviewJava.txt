@@ -1,3 +1,4 @@
+1.
 A programming paradigm is a fundamental style or approach to writing software. It defines the way in which a programmer thinks about the problem they are trying to solve, and the way in which they express the solution using the programming language.
 
 There are several different programming paradigms, including:
@@ -11,7 +12,7 @@ Each programming paradigm has its own strengths and weaknesses and is better sui
 
 
 ======================================================================================================================================================
-
+2.
 Imperative programming in Java is a way of writing code that focuses on describing the steps or operations that a computer should perform to achieve a specific task. It uses statements that change the state of the program and variables can be modified.
 
 Functional programming in Java is a way of writing code that emphasizes the use of pure functions and immutability, it encourages the use of functional constructs like lambda expressions and function composition. The state of the program is not allowed to change and variables are immutable.
@@ -50,3 +51,51 @@ public static void main(String[] args) {
 
 
 ======================================================================================================================================================
+3.
+lambda expression
+
+In Java, lambda expressions are used to define a function that can be passed as an argument to a method or assigned to a variable. They are a concise way of defining a function without having to create a separate class or method.
+
+Here's an example of using a lambda expression in a Java program:
+
+
+import java.util.function.Function;
+
+public class Main {
+    public static void main(String[] args) {
+        // Define a lambda expression that takes a string and returns its length
+        Function<String, Integer> getStringLength = (string) -> string.length();
+
+        // Use the lambda expression
+        int length = getStringLength.apply("Hello");
+        System.out.println("Length: " + length);
+    }
+}
+
+
+In this example, the lambda expression (string) -> string.length() is assigned to a variable of type Function<String, Integer>, which is a functional interface that takes a string and returns an integer. The lambda expression is then used to calculate the length of a string.
+
+Lambda expressions can also be used with other functional interfaces from the java.util.function package, such as Consumer, Predicate, and Supplier, which allow you to perform operations on input, make decisions based on input, and get a value respectively.
+
+Lambda expressions are also used with Stream API, which was introduced in Java 8. It allows to process collections of data in a functional way, by performing operations such as filtering, mapping, and reducing on a stream of elements.
+
+
+
+Here are some benefits of using lambda expressions in Java:
+
+Conciseness: Lambda expressions allow you to express a function in a compact and readable form, without having to create a separate class or method. This can make your code more concise and easier to understand.
+
+Increased readability: Because lambda expressions are more concise than traditional anonymous classes, they can make your code more readable and reduce the amount of clutter.
+
+Improved maintainability: Lambda expressions can make your code more maintainable by reducing the amount of boilerplate code and increasing the level of abstraction.
+
+Increased flexibility: Lambda expressions can be used in a variety of situations, such as passing a function as an argument to a method, returning a function as a value, or assigning a function to a variable.
+
+Improved performance: The use of lambda expressions with the Stream API, can improve performance by allowing operations to be performed in parallel on large collections of data.
+
+Functional programming: Lambda expressions are an important part of functional programming, it allows to create more expressive and elegant code with fewer lines of code.
+
+In short, lambda expressions provide a more concise and readable way of defining a function, they can be used in a variety of situations, and can make your code more maintainable and performant.
+
+======================================================================================================================================================
+4.
