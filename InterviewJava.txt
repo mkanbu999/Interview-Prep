@@ -412,4 +412,75 @@ Optimizing the code module.
 
 ================================================================================================================================================================
 
-5.
+5.comparator
+
+A comparator in Java is an interface (java.util.Comparator) that defines a method int compare(T o1, T o2) which compares two objects of the same type and returns an integer value indicating their order. The comparator is used to sort a collection of objects in a custom order defined by the implementer of the interface.
+
+Here is an example of a comparator that compares two strings based on their length:
+
+import java.util.Comparator;
+
+public class StringLengthComparator implements Comparator<String> {
+  @Override
+  public int compare(String s1, String s2) {
+    return Integer.compare(s1.length(), s2.length());
+  }
+}
+
+This comparator can be used to sort a list of strings in ascending order of their length, like this:
+
+List<String> list = Arrays.asList("dog", "cat", "elephant", "giraffe");
+Collections.sort(list, new StringLengthComparator());
+System.out.println(list);
+
+This will print [dog, cat, giraffe, elephant]
+
+
+another ex:
+
+import java.util.Comparator;
+
+public class Employee {
+  private String name;
+  private double salary;
+
+  public Employee(String name, double salary) {
+    this.name = name;
+    this.salary = salary;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public double getSalary() {
+    return salary;
+  }
+
+  @Override
+  public String toString() {
+    return name + ": $" + salary;
+  }
+}
+
+public class EmployeeSalaryComparator implements Comparator<Employee> {
+  @Override
+  public int compare(Employee e1, Employee e2) {
+    return Double.compare(e1.getSalary(), e2.getSalary());
+  }
+}
+
+
+List<Employee> employees = Arrays.asList(
+    new Employee("John Doe", 75000),
+    new Employee("Jane Doe", 80000),
+    new Employee("Bob Smith", 65000)
+);
+Collections.sort(employees, new EmployeeSalaryComparator());
+System.out.println(employees);
+
+
+This will print [Bob Smith: $65000.0, John Doe: $75000.0, Jane Doe: $80000.0].
+
+
+=========================================================================================================================================================
