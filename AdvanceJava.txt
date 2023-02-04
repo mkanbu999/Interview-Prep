@@ -1,0 +1,405 @@
+\ 
+up to myknowledge 
+\ 
+
+Tomcat--->
+piece of software written in Java run in server analysis the request from html.
+tomcat is responsible for run dynamic webapplication.
+it will process the http request and picks up respective servlet and first init method create 
+two object request and responce store the value that from html page.Servlets run in a servlet container(catalina).
+Tomcat provides a "pure Java" HTTP web server environment in which Java code can run.
+Tomcat is one of several open source collaborations that are collectively known as Jakarta.
+Tomcat is a very popular web server/servlet container that can host Java web applications which are made up of servlets.
+
+Catalina---->
+catalina is container in tomcat to run a servlet.catelina - Servlet Container
+Jasper - JSP Container.Catlina is a container that is used to execute sevlet program .Catalina implements
+specifications for servlet and JavaServer Pages (JSP).
+
+
+Servlet--->servlet is nothingbut,
+extended version of normal java class.Basically servlets are usually used to implement web applications.
+The javax.servlet packages provide interfaces and classes for writing servlets
+The HttpServlet class provides methods, such as doGet and doPost, for handling HTTP-specific services(html requst or respond to html.
+Servlets run in a servlet container(catalina) (e.g. parsing an HTTP request). 
+One of the best-known open source servlet containers is Tomcat.You need to use Servlet API to create to link servlets and tomcat
+
+
+ways of creating servlet---->
+we can create servlet in three ways 1.interface servelet,2.extending HttpServlet 3.extending  genric servlet.
+genric servlet has no do get nd do post it has only service method it change based on action.
+if we dont give any type of sevlet automatically eclipse will implements interface servlet.
+
+servlet life cycle--->
+when request come to server tomcat will load respective sevlet in catalina or tamcat container then the first step init  method 
+in servlet will executed.then init method will create request and responce object. then the  futher process control
+passed to service method .then it will analise which method will be executed based on action attribute.
+then whole process had done finally destroy method will be called its is the final proces of servlet there sevlet life ends.
+for subsequent request init method will get skipped request willgo to directly sevice and process further.
+
+interservlet communication--->
+when one servlet call another sevlet then its called 
+interservlet communication.to do this we use RequestDispatcher concept.here one servelet can forword the request to another sevlet
+to process the client request.
+
+xml---->
+The extensible markup language is simple text based format for representing structured information like documents,data,configuration
+books transaction invoices and much more.use it in webservices
+it is know as universal language for data on the web because xml documents can be created and used in any language.
+i use xml to download maven dependencies.
+
+
+doGet()---->
+doGet method is method of HttpServlet class.doget should we use when retriving the data from database
+even we havent mention the method name doget method automatically called .
+all the data is exposed in url.all the form data is saved in 
+browser history.
+
+
+doPost()----> we have to call explicitily from action attribute to access the dopost.
+it should be use submitting the data from the form.form data will not exposed in url.
+do post method would not store the data in browser history.
+ Examples are sending data after filling up a form or sending login id and password
+
+HttpServeletRequest--->
+HttpServletRequest is an interface and extends the ServletRequest interface. 
+By extending the ServletRequest this interface is able to allow request information for HTTP Servlets.
+ Object of the HttpServletRequest is created by the Servlet container and, then, it is passed to the service method (doGet(), doPost()
+
+
+HttpServeletResponse--->
+Extends the ServletResponse interface to provide HTTP-specific functionality in sending a response.
+ For example, it has methods to access HTTP headers and cookies.The servlet container creates an
+ HttpServletResponse object and passes it as an argument to the servlet's service methods ( doGet , doPost
+
+
+request.setAttribute--->
+by using request.setAttribute can set the value of an attribute  can remember only previous data
+ it cant remember previous to previous page  attribute is passed as parameters
+
+
+request.getAttribute--->
+it is used to fetch the data that set by request.setAttribute method.
+
+sessionManagement--->
+Session Tracking(management) is a way to maintain state (data) acros the application.it makes http servlet stateless to stafull.
+it helps us to use the data across the application.
+we can Manage session  in three ways 1.hidden field 2.cookies 3.Httpsession
+hidden in this method data would pass all the way throuh the module.
+cookies it create one file and store in one common place we fetch and use all over page but one cookie it only store one data in object .
+httpsession is convinient way to do session management.it is special kind of cookie it can store multiple data .its temprory.
+
+Httpsession--->
+public interface HttpSession
+httpsession helps us to use the data all overbrowser.it make http protoco stateless to statefull.its special kind of cookie it can
+store multiple data in it the cookie created with  httpsession is temprory.we can use the data all over browser.
+
+request.getSession()--->
+getSession() returns  session object associated with the request,
+to create  session cookie to store the data in it.using that object we call the cookie again and retrive the data.if we make 
+request.getSession(false) it will not create new session cookie
+retrieves the current session, and if one doesn't exist yet, returns null.
+functionally both are same but  functionally the same: 
+retrieve the current session, and if one doesn't exist yet, create it.
+
+
+session.setAttribute()--->
+used to set the value in session .then we can retrive the data using setAttribute.
+
+
+RequestDispatcher()--->
+The RequestDispatcher interface provides the facility of dispatching the request to another resource it may be html, servlet or jsp.
+This interface can also be used to include the content of another resource also.
+It is one of the way of servlet collaboration.it has  methods to
+helps to forward or stick  any page we need to load.
+
+request.getRequestDispatcher()--->
+it holds the path of the resourse which one need to load.and return the RequestDispatcher object.by using that
+object we can do forward or inlude process.
+
+
+reqdis.forword(req,res)---->
+ Forwards a request from a servlet to another resource (servlet, JSP file, or HTML file) 
+on the server. This method allows one servlet to do preliminary processing of a request and another 
+resource to generate the response
+
+
+reqdis.include(req,res)---->
+include a request to stick in same page (servlet, JSP file, or HTML file) 
+on the server. This method allows one servlet to do preliminary processing  generate the response at same page.
+
+
+Jsp--->(java server page)
+embeding java code inside html called jsp.It is used for creating web application.
+It is used to create dynamic web content.JSP is first converted into servlet by JSP
+container before processing the client’s request.They are easy to maintain.
+No recompilation for same request.JSP has access to entire API of JAVA .JSP are extended version of Servlet
+Reduction in the length of Code
+1.scriplet tag< %    %>
+object are readly presend in jsp we dont need to create.
+implicit object in jsp are out response request session etc we cant create method here
+2.Declaration Tag <%! %> :-It is used to declare variables .we cant use implic object here.but we can create method
+3.expression tag<%= %> convert expression to string we cant use ; we can call method
+4.directive tag<%@  %> we can  do import operation using thid tag. 
+
+jstl--->jsp standard tag library
+The JSP Standard Tag Library (JSTL) represents a set of tags to simplify the JSP development
+tags that can be used for implementing some common operations such as looping, conditional formatting.
+allow using predefined tag instead of writting javacode
+JSP is Java Ser Page.
+JSTL is JSP standard tag libary to create custom tag.
+So JSTL is used to create the JSP files.
+
+
+Mvc--->Model view controller
+this design pattern separates an application into three main logical components.
+ (MVC) design pattern specifies that an application consist
+of a data model, presentation information, and control information. improved scalability,
+ they are easy to maintain. A model can be reused by multiple views which provides reusability of code.
+ all css html code writen is view layer .controller it is behave as mediator between view and model it is take input 
+ from view gives to model and then its take output of model and gives back to view.model all the logics are the db base code
+ implementation all done in model layer.
+
+
+Hibernate--->
+its a jpa framework 
+
+
+hibernate is the object relation mapping tool.it helps to perform db operation easily it has readily available code to working with DB.we dont need to
+write so many line of code.it take the content in object and map it to the table with 
+help of jpa  and also can take the table content.
+map back to the object. advantages of hibernate
+hibernate create less dependecy transisation of one db to another db quite easily.and also reduce the number of
+code written based on db it create db.we dont need to create queries.
+simplifies the development of Java application to interact with the database. It is an open source, lightweight,
+ORM (Object Relational Mapping) tool.Hibernate implements the specifications of JPA (Java Persistence API) for data persistence. 
+Java Persistence API (JPA) is a Java specification that provides certain functionality and standard to ORM tools.
+The javax.persistence package contains the JPA classes and interfaces.
+1)open sourse and light weight
+2)fastperfomence
+3) Database Independent Query
+//jpa is an interface hypernate implement that//
+
+orm--->
+is the technique the process of persisting the java object to db table.table  and class name should be same to persist.
+jPA---->
+it doestnt perform any implementation.its a bridge between db and our application.its just specification.
+//it has methods hybernate implement the jpa
+
+jpa vs crud repository--->crud repository was intially intruduced later on latest version of spring boot comes with 
+jpa repository  jpa repository has a mehtod findall it all the content of the table and return as entity classs object
+it feature of jpa and not in crud repository.
+
+
+spring--->
+it is opensourse framework to develop java enterprice application. to create high performing,
+ easily testable, and reusable code.To run the Spring application, we need to set the server explicitly///     Model View ViewModel (MVVM) Pattern,,mvp
+To create a Spring application, the developers write lots of code.It reduces the lines of code.
+
+
+spring boot---->//its framework readlily available project structure follow mvc architecture.configuration easy//apache wicket and grails
+it is opensourse framework to develop java enterprice application. to create high performing, 
+easily testable, and reusable code.dependency downloading is made easier.it gives ready project structure.
+Spring Boot is built on top of the conventional spring framework. So, it provides all the features of spring 
+and is yet easier to use than spring. Spring Boot is a microservice-based framework and making a production-ready 
+application in very less time. In Spring Boot everything is auto-configured. We just need to use proper
+configuration for utilizing a particular functionality. Spring Boot is very useful if we want to develop REST API.
+
+why spring boot--->rest api introduces in spring boot.
+spring boot gives ready project structure .more secure comes with initial dependecies
+implementing rest services is easier object are thread safe.
+Spring Boot Architecture--->
+    Presentation Layer--authentication and json translation
+    Business Layer--perform buisnees logic, authorisation
+    Persistence Layer--storage logic
+    Database Layer--actuall database
+
+
+dependecy injection--->core of spring
+we can cut the dependency between two classed.for instance two class depends each other if i make any changes
+in class one class i have modify other class so by using dependency injection we avoid this problem.
+finding bug is deficult as it depends other classes.if we programe with dependecy injection we can test
+the each and every class seperately.
+
+
+Spring Boot Starters --->
+It provides additional information and statistics on project generation
+Spring Boot Starters are a set of convenient dependency descriptors that you can include in your application.
+Spring Boot provides a number of starters that allow us to add jars in the classpath. Spring Boot built-in starters
+ make development easier and rapid. Spring Boot Starters are the dependency descriptors.
+
+entity--->
+in entity layer setters and getters mathod were used .to read and write a data we cant access directly only using
+setter and method we can access the data.entity members  should be same as db name to map by jpa repository.if doesnt 
+match it will throw an error.An entity is a collection of fields and associated database operations. Entity classes 
+have a stereotype of entity. ... An entity class is essentially an object wrapper for a database table
+
+repository--->to perform database operation in Spring boot
+all data base details given here all database opereation also perform here only.by extending jpa repository we can use 
+those method in repository layer.it will map entity object into db table.all databse 
+Repositories are classes or components that encapsulate the logic required to access data sources.
+They centralize common data access functionality, providing better maintainability
+
+
+controller--->
+A controller basically controls the flow of the data. It controls the data flow into model and
+updates the view whenever data changes.its a mediator between the view and model
+ it is take input from view gives to model and then its take output of model and gives back to view
+.it will controll the sevice layer
+
+
+service--->adding additional feature for the spring application service layer
+Service is used to annotated classes which hold business logic in the Service layer.in sevice layer we can develop the interating
+programe here for instance for email epi we develop code here to improve the maintability.
+
+
+application property--->
+ In Spring Boot, properties are kept in the application.properties file under the classpath.
+The application.properties file is located in the src/main/resources directory. 
+here  we done all configuration for the springboot application.we can define our  custom configuration properties
+like we can change the port to run a server.This appendix provides a list of common Spring Boot
+properties and references to the underlying classes that consume them.
+here all the database details i would be giving it here.what ever we given in the place it
+should be keyvalue pair.Properties files are used to keep ‘N’ number of properties in a single file to run the
+ application in a different environment.The code for sample application.properties file is given below −
+server.port = 9090
+spring.application.name = demoservice
+Spring Boot also allows us to define our own property in application property if required
+
+pom.xml--->
+it instruct your maven to download the required dependecies(jars) it has instruction to download the jars .
+we write instruction in xml tag.POM is an acronym for Project Object Model. The pom.xml file contains 
+information of project and configuration information for the maven to build the project such as dependencies,
+build directory, source directory, test source directory, plugin, goals etc.
+Maven reads the pom.xml file, then executes the goal.
+Before maven 2, it was named as project.xml file. But, since maven 2 (also in maven 3), it is renamed as pom.xml
+
+webservice---->they would tie up with lot of company/assume/they put it in the details in their portal they sell ticket from their app and it will
+reflect in official ticket portla/there are two different application develped in other technology  by that they can use service of other application/
+
+integrating hetrogenious or homogenious application is called as websevices. we can exchange data between two applicaions
+make use of that consuming or exposing data will be done.for example ticket booking app,
+the official train ticket app would integrate with other third party applicationm ..official application will expose data
+in xml form or jason object form to thirdparty application nd it will consume that data.then it will get reflected in official app db.
+webservices implemented in two ways 1.soap and 2.rest
+soap---> here we exchange the data by xml imlimenting is complex .because parshing the xml file required lot of coding
+xml file is plotform independ.(any programming understand xml file)
+rest---> it easy to implement webservices by rest bcoz here we can exchange data b/w application using jason object however
+rest also support parshing xml file .consuming and exposing jason object is easier.
+
+
+
+
+microservice---->
+here we break bigger application into smaller module and then we established communication with webservices.
+we can improve the perfomence by running the modulus in different severs.even one sever goes down we can able to
+access other module.using webservice concept.
+
+autowired 
+it performing dependency injection it will wire available object in spring container to annotated interface or class.for example if we want to create object for 
+repository in service we use autowired annotation.
+
+requesmappring
+it is method level annotation to 
+binds form url with controller methods.web request will be redirected to the method.when request comes to the spring  it iterates over each Controller method 
+then matching method will assigned to the perticular web request.The request goes to the controller, and the controller maps that request and handles it. After that, it calls the service logic if required.
+
+reques param
+it read data from frm field/url  and intialises controller method attribute.we use request param when entity variable not matching and when data are less number.
+
+modelattribute 
+it map form data to entity class object.we use model attribute when the all the variable is matched with dp column
+
+modelmap 
+it is a class that helps to exchang data between controller layer and view layer
+
+controller 
+it helps us defines controller layer in the project which view and services ayer
+
+service
+its a sterio type that defines sevices layer
+
+restcontroller 
+theis define that the cass performs webservices activity
+
+component
+its a steriotype
+
+
+getmapping 
+helps to read data from data from db using webservices
+
+postmapping 
+helos to save data to the db using webservices
+
+putmaping 
+helos to update data i db using webservices
+
+deletemapping
+helps to delete record in db using webservices
+
+pathvariable
+reads data from ur;
+
+reustbody
+helps to map java object to jasn object
+
+
+
+
+
+ jpa annotation
+entity
+it maps java class to db table 
+
+id
+it maps entity class field with primary column of databse table
+
+
+column
+when entity class field name and database column name are different then it helps to map this
+
+
+table
+when entity classname and db table names are different then it helps to map this
+
+geratedvalue
+it helps us to autoincrement the values in db
+
+qualifies 
+its resolves problems of which bean address needs to be injected int the reference variable of repository during runtime
+
+
+spring initialiser
+its gives us spring boot project struure in eclipe
+
+
+
+
+
+ctl shift o
+alt shift r
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

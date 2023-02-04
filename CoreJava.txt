@@ -1,0 +1,571 @@
+
+
+
+Genrics--->
+By using Genrics we can dynamically change the data type while creating object .for Instance If a programmer writes a code for
+ sorting there Genrics allows the programmer to  use the code for other data type too.
+
+
+
+ Comparator--->customised sorting order by passing object as argument
+ Comparator  is interface used to order a object in user defined class .its capable of compare two object
+ from different class .its would present in util package.
+
+Collections class--->
+
+
+
+ Collection--->
+  In java collection is a frameWork .Collection  stores group of object in it . it has readily
+ available logic to deal or manupulate the different dataStructue. we can perform searching, sorting, insertion, manipulation, and deletion.
+ Java Collection framework provides many interfaces (Set, List, Queue, Deque) and classes 
+ (ArrayList, Vector, LinkedList, PriorityQueue, HashSet, LinkedHashSet, TreeSet).
+Usage:Fetch data from database and store each record into suitable collection class.
+Hold the data and transfer the data from UI to database and vice versa.
+
+ ArrayList--->
+ Internally its implemented as dynamic Array.Initial size of ArrayList is 10 when we exceed the 
+ Initial size automattically Arraylist increases the size of 1.5 times.in ArrayList we dont need to use index no
+ to insert data in obj by using add method.maintain insertion order can consist of duplicate value.
+ if we takl about advantage reading of data would be give  best perfomence.but in writing suffiling will happen.
+ its required continiues memory(array list implements List interface)
+hold only non primitive.its not synchronised by default but we can make it synchronised  collection.synchonizeList().
+
+//if  need to insertion and delete perform frequently where we can use linked list it give good perfomence.
+
+
+LinkedList--->its stored group of object in it.
+In LinkedList there is two type linkedList is there one singly linked list another type is doubly link list
+its doesnt required continiues memory to store like arraylist.. insert and delete elements in the middle of the list relatively quickly
+because its stored the value with next value memory address.
+
+singly linkedList --->In singley link list memory split into two node one contain object with value 
+and another hold the address of next node .Reading of data is one directional dis advantage occupied more memory
+bcoz its took two slot to store a single value.
+
+
+
+Doubly linkedList--->in doubly linkedList memory split into three node middle one hold object with value
+left node contain previous memory addresss right node contain its bidirectional.take more data 
+impacts performance across the process.
+
+
+HashTable-->its a class it implements map interface
+hashtable is an associate array where in the values are stored as keyvalue pair.use Hashing/hasing funtion to define the
+index of the keyvalue value pair.it doesnt mean if it is a hastable the value should be stored as a keyvalue pair.
+its synchronised.to avoid collision in hastable we can use list.it will stored value with same value.allow duplocate value  not suport null value
+Main advantage is synchronization. database indexing, caches and sets.
+
+
+Set--->it its an interface.it can store only unique value only
+HashSet-->its uses hastable internally.it will not store the value as the keyvalue pair.using hasing technique and 
+inject the data into data base.its not synchronised it wil not permit null value.and not allow duplicate value.use add to insert.
+its not follow insertion order
+linked has set it maintain insertion order and contain unique value
+
+
+treeset--->
+contain only unique value only to store the value in assenting order
+
+HashMap--->its uses hastable internally.it store  the value as the keyvalue pair.using hasing technique and 
+inject the data into data base its also internally uses hastable to store the value as keyvalue pair its not synchronised.Can store
+duplicate value not key.we use put method to insertion
+HashMap allows only one null Key and lots of null values.
+unique key
+
+
+
+Regular Expression--->
+The Java Regex or Regular Expression is an api it has compiled  pattern for searching or manipulating strings.
+we can form validation by using the regular expression.  we can check matched valid email address or passwordThe .
+pattern class contain compiled representation of regular expression.Matcher class will match the element with pattern and give output
+
+char*?+ it gives zero accurance or group of accurance of perticular charactor.
+
+
+Cloning --->the process of creating replica of perticular obj by copying one object completly into another object.
+we have to implement clonable interface. If we do not implement Cloneable interface, clone() method generates CloneNotSupportedException.
+if we need to use many object having the same data, then don't create objects using new keyword. use clone method to create that object,
+because operation of creating object with clone method is faster than using new keyword
+
+
+Tokenizer--->
+is used to spilit the strings.
+The java.util.StringTokenizer class allows you to break a string into tokens. It is simple way to break string.
+
+
+Annotation--->
+@suppress warning("unused") to use gerride warning  symbol.we can remove the warning from class by creating outside of the class and also we 
+ can use it for individual variables.
+@deprecated it is used for checking the build in method older or updated.
+
+
+Enum--->
+The Enum in Java is a data type which contains a fixed set of constants.naming conventions should have all constants in capital 
+letters.Enums are used to create our own data type.for instance we can create enum for month.
+Java Enum internally inherits the Enum class, so it cannot inherit any other class, but it can implement many interfaces.
+We can have fields, constructors, methods, and main methods in Java enum.we use enum keyword.
+
+Wrapper class--->
+The wrapper class in Java provides the mechanism to convert primitive(8int..) into corresponding object .
+in java sometime we might need to use object instead of primitive data type. for ex while working collection Arraylist<int>//error 
+here we have to give object.
+we can store null values in wrapper class but in primitive we cant store null value.primitive data type more efficient that wrppr class.
+The main reason primitive data type are there because, creating object, 
+allocating heap is too costly and there is a performance penalty for it. As you may know primitive data types like int,
+float etc are most used, so making them as Objects would have been huge performance hit.
+
+
+finalize--->finalise is the method present inside object class.
+garbage collector call  finalise method to clean up activities before obj is destroyed. its a automatic process.every time we run
+ a program jvm do it.
+
+
+multi Thread in Java--->
+multitasking done at programming level is called as threads.main purpose of the thread is to improve the perfomence of the application
+and reducing execution time.it should not be  depending on other thread .two way we can buil thread .one is extending the thread second
+implement runnable interface.synchronisation will be followed when thread are operating comman data.sleep method notify method and 
+wait method will be used when one thread depending on other data.
+ex: Railway ticket reservation system where multiple customers accessing the server. 
+main purpose of multithreading is to provide simultaneous execution of two or more parts of a program to maximum utilize the CPU time. ...
+Threads are lightweight sub-processes, they share the common memory space
+
+
+Threadlifecycle--->
+new when we create a object for a thread with new key word its goes to new state.whenever we call the start method on the object.its 
+change the state to runnable state.then thread schedular allocate the memmory in cpu to run a thread.in this state thread start 
+execute the thread.when we use wait sleep suspend in thread its go to waiting state then notify notify the main thread then
+main thread kill the wait state state.after all execution done its goes to dead state its single life cycle of thread.
+
+thread synchronisation--->
+when two threads are operating on common data the data might get currupted becouse of multitasking.To make the thread one after
+other we use synchronised keyword to make one thread to wait untill other thread complete the task.for example bank balance 
+data curruption might happen if we not use synchised concept.
+
+
+Thread priority--->
+it decide which thread is going to run first which thread run first and which one is run later.we set the priority then its a request
+made to thread schedular there is no assurity that will be processed and appeal.the minimum thread priority is 1.maximum thread 
+priority is 5 however we can set the thread priority with number anything between 1 to 10.
+
+
+Thread pool--->
+collection of thread at one place called thread pool.by using thread pool we can limit the number thread nunning in the program.
+ its improve the performence of the application every time request come
+its assinged to the thread .once the thread complete the task it will not get destroyed it again use it for other task to execute
+we can use exixting thread instead of creatig new thread.
+
+
+final class--->if we make a class final it cant be extended and some classes erfor standard funtion and they are not meant to be modified .ex string manupulation
+mathematical funtion
+The other use of final with classes is to create an immutable class like the predefined String class.
+You can not make a class immutable without making it final.2.One is definitely to prevent inheritance, as final classes cannot be extended. For example,
+ all Wrapper Classes like Integer,Float etc. are final classes. We can not extend them.
+ 
+
+
+
+
+Mutable and Immutable--->
+Objects in Java are either mutable or immutable. it depends on how the object can be created.
+to create immutable class create class as final.2 set the values of the properties using constructor 3.make the members//we cant use setter for final
+final.do not use setters and getters method.
+
+ex;String is the immutable class.
+if we create new object in string for same value that exixt already it will not create new object it will refer same object.
+if we change value of String it will not actually change its value its just refer new object.older was still be presented.
+
+
+
+Constant pool--->The area where immutable pbjects are present thats called constand pool
+
+
+//we can run programe with out main using static method.purpose of interface is its a rule dont should be changble 
+so its support only static.constructor we cant access static because its belongs object.compiler simple convert human 
+code to class file .object creation happen only in runtime.
+
+
+Reverse a  String i have to practice.
+
+
+Throw--->we can create custom exception using throw key word.its throw exception object to catch method.
+throw keyword is used to throw an exception explicitly. It can throw only one exception at a time.
+
+
+Thrown--->
+It is used when the function has some statements that can lead to some exceptions.by using throws key keyword in method.
+exception thrown to the method calling statement.In method we have to use try catch.
+but by using thrown in class defining line exception will be handled by the jvm.(jvm called main)
+throws keyword can be used to declare multiple exceptions, separated by comma. Whichever exception occurs, 
+if matched with the declared ones, is thrown automatically then.
+
+
+Finally--->
+finally is associated with try cathch block.any code we written in finally block regardless of exception happen or not
+it will run.its exctence of catch,try.
+
+
+Final--->
+we can use final keyword to class method and variables.//we cant reinitialise the variable again.
+final in  variables -to make variable constand
+final in class- to prevent not to inherit to other
+final in method- to prevetn overriding.
+
+
+JDBC--->
+To establish connection between javaapp and mysql we need sql driver it has class drivermanager with method get connection
+to create connection.then send a query we need to create statement object.it will send  a query to sqlDb and the query method
+will return Result in Result set obj.we can db operation.
+
+
+Serialisation--->
+Serialisation is the process of storing object in byte state permanently in the file system.we store  the object we use Fileout
+putstreatm constructor  to access the path of the file and we use objectoutPutStream to send the object to systemfiles.
+
+
+deserialisation--->
+In deserialisation we convert the byte state of object from file and can read that object is called deserialisation
+To do thid we use fileinputstream constructor to access the file and also we use objectInputstream constructor to retrive
+the object and access the file then by using readobject() method it will return the obj by reading that byte formate
+Aa2=(A) ois.readobject().we typecast to store the object in perticular class.
+
+
+Fileconcept--->The File class have several methods for working with directories and files such as creating new directories or files, deleting and renaming directories or files, listing the contents of a directory etc.
+using file class constructor  we can check the file is present or not using f.exit method.it will return boolean value
+delete() method is used for delete the file that present in the path and return boolean value
+create() we can create the file in the given path.
+mkdir() will create folder in path and return boolean value .
+list() it wiill return all folder in given path.
+fileReader class is used read the file in given path by useing read() and this method will return single char onlu
+creating a for loop we can read the file.
+filewriter class used to write the content in given path by using write mehtod.flush() give assurity that no bug
+will happen in while writing the content. it means to clear the stream of any element that may be or maybe not inside the stream.
+
+BufferReader--->
+Like filereader class this also used for reading the content in the given path.but it will the read the content line by line
+Main purpose of buffer reader is to improve file reading perfomence read lice by line 
+
+
+bubble sort---> bubble sort is an algorithm that sort the values by comparing adjucent elements and swapping them
+if they appear in wrong order.for example if the array has 5 elements we have to iterate  5 times.in fisrt iteration we
+have to compare every element.so first iteration itsself max or min value sort to the end or firstindex
+ then second iteration we dont need to compare all element. we can leavve last or first index so next we need to
+ compare 4 times so like that untill we reach every item in list order correctly.
+
+
+ Array--->Java array is an object 
+ An array is a collection of items stored at contiguous memory locations.
+ This makes it easier to calculate the position of each element by simply adding an offset to a base value(index).
+ You can’t change the size once you have declared the array you can’t change its size because of static memory allocation.
+ in single array we can store only same type data .
+ Arrays allow random access to elements. 
+ This makes accessing elements by position faster.
+ Used to Implement other data structures like Stacks, Queues, Heaps, Hash tables.
+difference between the two indexes is the offset.
+
+
+
+2d array--->
+2D array can be defined as an array of arrays.represented as the collection of rows and columns
+The syntax of declaring two dimensional array is very much similar to that of a one dimensional array.
+same application as arry but we have to use column no and index no to access.
+2D Arrays are used to implement matrices
+
+
+
+Throwable--->
+throwable is the super most class of all errors and exception in java.only object are thrown by jvm.
+Throwable class is the root class of Java Exception Heirarchy and is inherited by two subclasses:
+1.Exception
+2.Error
+Throwable contains a snapshot of the execution stack of its thread at the time it was created.
+ It can also contain a message string that gives more information about the error. 
+ It can also suppress other throwables from being propagated.
+
+
+ Error--->
+indicates the problem that mainly occurs due to the lack of system resourses
+There are three kinds of errors: syntax errors, runtime errors, and logic errors. Syntax errors.
+ These are errors where the compiler finds something wrong with your program
+
+exception--->
+exception are unexcepted event that hault programs executio aprubtly.exception is cause when bad user input given
+to handle exception we can use try catch block.
+
+runtime exception--->
+filenot found, i/o ,sql syntex, clonednot support,
+
+compile time exception--->
+arithmetic exp,nullpointer exp,number formate exp,arrayindexoutof bountry exp,class cast exp.
+
+
+ScannerClass--->
+Scannerclass is used to take user input in java.its connect eith keyinput.
+it present in java util package.we can obtain only
+obtaining the input of the primitive types like int, double, etc. and strings.
+ create an object of the Scanner class and use any of the available methods found in the Scanner class documentation.
+
+
+AbstractClass--->
+abstract class can consist of both comlete and incomplete method. to create abstract method abstract keyword is 
+mandatory.we can done partial implimentation
+we can create static and non static variable but non static variables are cannot be accessed.
+cannot create object for abstract class.(we can create object in other class that inherit the absclass then we can use)
+Abstraction is a process of hiding the data implementation details, and showing only functionality to the user. 
+not 100% abstraction.
+//hiding implement mean people can only see what is the method like interface(like steering of car we cant see internal work)
+ but they cant see the implement that we did in class
+its opt for interface too they only see what all method there but they cant see what is the logic that write inside the
+class//
+
+Interface--->
+An interface can consist of only incomplete method only.its optional to use abstract key word to create method
+it will automatically consider as a abstract only.incomplete method should be completed otherwise its throw an error.
+we can create varibles in interface that all are final and
+static. Java doesn’t support multiple inheritance, using interfaces you can achieve multiple inheritance
+ One of the uses of the interface is to provide communication. 
+Through interface you can specify how you want the methods and fields of a particular type
+100% abstraction.
+
+
+Encapsulation--->
+Binding the data by using mehtod.we use setter and getters method to intialise the data.we make the
+variable private . so can avoid the direct access of the data.we can improve the security to the programe.
+only using setter and getter method we can change value of variable.setter method would set the value and get 
+method return the value that set by the setter.
+
+
+inheritance--->
+By using inheritance we inherit the members of one class to another class.we can use that method in inherited
+class.we dont need to write same code for again and again.intention of reuse the member.java doesnt support multiple 
+inheritance.
+
+polymorphism--->
+develop a feature that take more than one form that is called polymorphism.there is two way can perform
+polymorphism.overriding and overloading .
+in overloading we inherit the method and modify the logiic of the mehtod in the childclass with a same name.
+we can check whether overideing happen or not by using by using override annotation.
+overloading - creating mehtod more than one method with the same name with different number of arguments or different
+type of arguments.
+
+
+
+//disadvange of static method Members are part of class and thus
+ remain in memory till application terminates.and can't be ever garbage collected. 
+ Using excess of static members sometime predicts that you fail to design your product and trying to cop of with static /procedural programming. 
+It denotes that object oriented design is compromised.This can result in memory over flow.cant overide it completly get changed.
+while clearing object non static method also get terminated by gc.
+
+
+Superkeyword--->
+using Superkeyword we can access member of parent class.
+using Superkeyword we can access static and  non static member both
+super keyword cannot be used inside static context.using Superkeyword we can call constructor of parant class 
+but calling should be from a child class constructor and also should be very first statement.even if we not use
+Superkeyword compiler will automatically place the Superkeyword.it only call no arg constructor of parent class.
+
+
+IIB(Instance initalation block)--->
+iib's executed when object are created number of  time we create an object same number of time iib will called.
+iib's are used to initalise all instance variable in once give better readability of the code.we can initalise 
+static and non static varible inside iib.
+
+SIB(static initalisation block)--->
+Sib runs before main method runs it doesnt required any invoking statement.
+
+
+postIncrement --->
+increment the value by one when next time ahead when see the variable again
+
+
+preincrement--->
+increment the value at the moment we use.
+
+
+Lambdass expression--->
+to enable functional programming benifits in version 8 they intruduced lamdaass expresion //what ever procedural programming doing object orient prog also
+do that but some time funtinal is convenient to use so enable that benifit they introduced lamdass expression do implement the functional progrming// 
+it help us to write a code in less number of lines .it make the code less readble.
+we use lambdass expression to complete funtional interface.
+main objective of lambdass expresion is enable funtional programing benifits.
+we can use api very easily and effectivly.because we use funtional befifits.//funtion without name.we can pass function as arguments in lambdass exp form
+
+funtional interface--->
+interface consist of only only incomplere method in it .
+
+
+marker interface---->
+empty interface called marker  interface.Marker interface is a total blank interface that has no body/data-members/implementation.
+A class implements marker interface when required, it is just to "mark"; means it tells the JVM that the particular class is for the purpose of cloning so allow it to clone. This particular class is to Serialize its objects so please allow its objects to get serialized.
+
+
+feature of java 1.8v--->
+Lambda expressions,Static  methods in interface,default keyword we can create complete method in 
+interface,Functional Interface,ForEach() method,data and time api(joda api),stream api.
+
+
+
+    default methods made possible the functional programming concept. in future  if we want to add funtionality to the all the classes we can write the code in it 
+so it doestnt required lot of testing .
+    Also adding an method in interface will not made it compulsory for all the classes implementing an interface. Simplified the coding practise
+Before Java 8, interfaces could have only abstract methods. The implementation of these methods has to be provided in a separate class. So, if a new method is to be added in an interface, then its implementation code has to be provided in the class implementing the same interface. To overcome this issue, Java 8 has introduced the concept of default methods which allow the interfaces to have methods with implementation without affecting the classes that implement the interface.
+
+
+this style of programming is to make code more concise, less complex, more predictable, and easier to test compared to the legacy style of coding. Functional programming deals with certain key concepts such as pure function, immutable state,
+
+
+
+
+need objective of java8--->
+simplify the programe(less no of code consise and clean code and more maintanable code)
+parrellel processosing to compatable with hardwares like multicore processors
+get the benifits of funtional programming
+
+
+Typecasting--->
+autoupcasting - converting smaller data type to bigger datatype.int to  long
+during upcasting data loss might happen hence the programe throw an error
+ex float to long .
+
+explicit downcaste-convert bigger datatype into smaller datatype.during explicit downcasting there are chances that 
+data lose might happening. 
+
+class upcasting-child objects address is stored in parent referece variable as shown in example //upcasting is the type casting
+Aa1=new B();
+
+clas downcasting parent class object address stored in child class 
+B b=(B) new A();
+
+
+Access specifier--->
+private default protected public
+if member private only access in same class,if member default access canbe only same class same package,
+if member protected only access same class same package different package by inheriting,if it is public 
+we can access any class any package.
+class access specifiere; if class default cannot be accesd in diff package,id class public access any where in project,
+class cannot be private and protected
+constructor access specifiers;
+if cons private creating object cant be in another class,if constructor default creeating it object cannot be done in another
+package,if protected object creation cannot be done in another package default and protected are same
+if public we can execute anywhere in project.
+
+
+DataHidiing--->
+if variable made private so that it cannot be accessed in different class that is called data hiding.
+
+this keyword--->
+this key word is the special reference variable that hold object address.this keyword cannot be used in side static method
+using this key we can access both static and non static context member of class,if we not use this keyword to use 
+nonstatic member then automatically this keyword is append by the compiler as shown in the below ex.but this
+will happen only in non static method. we can constructor.but calling statement should be in another constructor.
+
+
+setters and getters--->
+setters are the method using we can intialise the non static variales.
+getters will return the value that we set by setters method.
+
+
+varType in java--->if variable var it store any kind of value in it as shown in below example.it cant be static non
+static.var cannot be used in an instance and global variable declaration.
+var can be used in a local variable declaration.
+We can declare any datatype with the var keyword
+
+
+constructor--->
+its like a method but it cannot return any value.
+Constructor should have same name as tht of class,every time object created constructor will be called.
+we can create multible constructor with different arguments is called condtructor overloading.
+
+
+return--->
+return will return the data to calling statement in void mehtod return keyword is optional it return contril to 
+calling statement.
+
+
+new--->
+it send a request to the class to create object once object created new keyword get the address and store that in reference
+variable.
+
+
+garabage collecter--->
+Garbage collector helps us to manage memory in efficient manner by removing unused objedt from the memory on regular basis
+thus avoding overflow of memory.its automatically run by jvm.
+
+nonstatic variable--->
+create inside class outside method with static keyword.
+belongs to object 
+when object created non static variable is loaded into the object.
+Memory is allocated for these variable whenever an object is created
+
+static variable--->
+static variable created inside class but outside the method with static keyword
+located into class common memmory.
+we can access static variable anywhere in the class by using class name.object creation is not required for static member
+if the variable need to be access all over the class we can declare that static.Memory is allocated for these variable at the time of loading of the class.
+
+local variable--->
+created inside method and should be used in created method only.
+Local variables are declared in methods, constructors, or blocks.
+out side method we cant use local variable
+
+reference variable--->
+object address canbe stored inside  the reference variable.local reference variable created inside method can only Used
+only inside the mehtod
+ static reference variabl- we can create outside mehtod inside class have global access, static keyword used.
+Static reference variable can be shared across different instances of classes and can be used shared data across instances.
+
+ Java--->
+The main difference between Java and any other programming language is the unique method in which Java code is executed.
+ Unlike compiled languages such as C++, Java is compiled into bytecode which can run on any device with the Java Virtual Machine (JVM). 
+ C++, on the other hand, is compiled directly into machine code and therefore, can only run on the same platform in which it was compiled.
+Another feature is enormous amount of java class library
+Java code compile into .class then interpreted into machine code by jvm or jre
+ Java hqs Buildin thread but c dont
+ Has automatic garabage collection
+
+
+ JDK--->
+JDK is only used by Java Developers. It consists of  javc jre,jvm.jre consists of jvm and other library to run class file.only user has jvm
+
+
+ JVM--->
+JVM is responsible for executing the java program line by line hence it is also known as interpreter.
+it would run a class file that generated by the java compiler
+
+
+
+ CLASS--->
+class is user define Blue  print. Or factory which creates object.class defines the properties to the objects of method and members.In java Class name should be begin with capital letter and surrounded by curly brace
+
+
+ OBJECT--->
+Object is an real time entity it has a state/attribute (memmbers )identity(name of obj) behaviour.when object is created method and  
+Non statics member will loaded into it these are objects state behaviour
+Objects provide a structured approach to programming.
+ObjectsS aims to implement real-world entities like inheritance, hiding, polymorphism etc in programming.
+The main aim of OOP is to bind together the data and the functions that operate on them so that no other part of the code can access this data except that function.
+Flaw of procedural language the inability to reuse code throughout the program .to overcome this oops came in
+Reusability structure secure.
+
+
+when programe strat execution memory will split into two part stact and heap memory.
+Heap --->
+It is created by the Java Virtual Machine when it starts. The memory is used as long as the application is running. Java runtime
+uses it to allocate memory to objects and Java Runtime Environment (JRE) classes.
+Where obj are created
+If we continuously allocate memory and we do not free that memory space after use it may result in memory leakage – memory 
+is still being used but not available for other processes.so heap manage by garbage collector its automated process by jvm.
+
+
+Stack --->
+it maintain lifo.load the method top to bottom .
+Its maintenance program execution.methods are.loaded into stack after excution all will be removed and connection also removed( ref)
+
+
+
+
+
+
+
+
+

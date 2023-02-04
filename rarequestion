@@ -1,0 +1,1002 @@
+
+
+1.exception Heirarchy--->
+supermost class of exception heirarchy is throwable it is direct subclass of object class.throwable has two direct error and exccpetions
+Exceptions are further subdivided into checked (compile-time) and unchecked (run-time) exceptions
+there is variety of error ex virtual machine error and assertion error etc.
+
+
+2.collection herarchy--->in collection hierarchy collection is the supermost interface.The hierarchy of the entire 
+collection framework consists of four core interfaces such as Collection, List, Set, Map.
+All the interfaces and classes for the collection framework are located in java.util package.
+link interface would implemnd by three class those are arraylist linked list and vector.next set interface would implement by hashset
+linkedhasset and tre set finally map would implemented by the hashmap.
+
+
+3.why there are different layer in spring boot--->
+important use of it is to segregate the views from the model and controllers. It helps in separating the display
+ and the data and allow modification in each data without affecting the others    
+main reason is easy mainablity.to make loosely coupling to made clean code.and also its a frame we have to follow cerain rules to
+make a application spring boot otherwise it canot start the product.
+Faster Development Process 
+
+4.how to create api from pojo class to last service layer--->
+The POJO Service Engine provides a very simple API for defining consumers and providers using POJO. 
+Some of the objects are annotated for ease of use //i used @entity jpa annotation it tells the hybernate repository that its a object have to be persist in respective
+Db to do this we ensure the entity class name and the database table should be same 
+
+
+5.how to create api--->
+using Spring Boot RESTful web service, we need to add the Spring Boot Starter Mail dependency in your build configuration file
+You can write a simple Rest API to send to email in Rest Controller 
+ can write a method to send the email with Attachment. Define the mail.smtp properties and used PasswordAuthentication
+
+
+
+
+6.what is implicit object--->
+These objects are created by the web container that are available to all the jsp pages.
+The available implicit objects are out, request, config, session, application etc.developer can call them directly without being explicitly declared. JSP Implicit Objects are also called pre-defined variables.A web container, JSP container or servlet container refer to the same thing
+These objects can be directly used in scriplets that goes in the service method.
+
+
+7.funtional interface where did you use
+Runnable, ActionListener, Comparable are some of the examples of functional interfaces. 
+A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. From Java 8 onwards, lambda expressions can be used to represent the instance of a functional interface
+
+
+
+8.load and get
+    Both are from Session interface, and we will call them as session.get() & session.load()
+    Both will be use for retrieving the object (a row) from the database
+When you call session.load() method, it will always return a “proxy” object,  whats the meaning of proxy object ?
+Proxy means, hibernate will prepare some fake object with given identifier value in the memory without hitting the database, for example if we call session.load(Student.class,new Integer(107));  > hibernate will create one fake Student object [row] in the memory with id 107, but remaining properties of Student class will not even be initialized, observe this graphical representation…
+It will hit the database only when we try to retrieve the other properties of Student object i mean stdName, stdCountry.  If we call s2.getStdName() then hibernate will hit the database and search the row with student id 107 and retrieve the values, if object [row] not found in the database it will throws ObjectNotFoundException
+When you call session.get() method, it will hit the database immediately and returns the original object
+which is the best method to use, hibernate load() or get() ? its completely your choice 😉
+lazy loading eager loading
+
+https://www.java4s.com/hibernate/
+9.spring boot life cycly
+presentation layer==>buisnesslayer==>persistence layer==>db layer
+Bean life cycle is managed by the spring container. When we run the program then, first of all,
+ the spring container gets started. After that, the container creates the instance of a bean as per 
+the request, and then dependencies are injected. And finally, the bean is destroyed when the spring container is closed. T
+
+
+10.request and response
+Let’s assume the situation that we have a web page with fields. A user filled some of them and pressed a button to submit changes.
+ This triggers the get request to the server. There is a dispatcher of the servlet that sends a request to the corresponding servlet. All data are wrapped to the ServletRequest
+It’s used for getting the parameter value, server name, server port, etc.
+. It basically is used for redirecting to any other resource
+an object to assist a servlet in sending a response to the client. The servlet container creates a ServletResponse object
+ and passes it as an argument to the servlet’s service method. Data that needs to be sent to the client will be put inside the 
+ServletResponse object
+Blueprint of an object to provide client request information to a servlet. The servlet container creates a ServletRequest object '
+and sends it as an argument to the servlet’s service method.
+
+
+
+
+11.can volatail used with array
+Using volatile is yet another way (like synchronized, atomic wrapper) of making class thread safe. Thread safe means that a method or class instance can be used by multiple threads at the same time without any problem.
+
+synchronized is method level/block level access restriction modifier. It will make sure that one thread owns the lock for critical section. Only the thread,which own a lock can enter synchronized block. If other threads are trying to access this critical section, they have to wait till current owner releases the lock.
+volatile is variable access modifier which forces all threads to get latest value of the variable from main memory. No locking is required to access volatile variables. All threads can access volatile variable value at same time.
+A good example to use volatile variable : Date variable.
+Assume that you have made Date variable volatile. All the threads, which access this variable always get latest data from main memory so that all threads show real (actual) Date value. You don't need different threads showing different time for same variable. All threads should show right Date value
+
+can volataile can be used with array
+The volatile modifier indicates the JVM that the thread accessing a volatile variable should get data always from the memory. i.e. a thread should not cache the volatile variable.
+
+Accessing a volatile variable synchronizes all the cached copied of the variables in the main memory. Volatile can only be applied to instance variables, which are of type object or private. A volatile object reference can be null.
+Example
+Making an array volatile
+The elements of an array don’t have the volatile behavior though we declare it volatile.
+To resolve this, Java provides two classes namely AtomicIntegerArray and, AtomicLongArray, these represents arrays with atomic wrappers on (respective) variables, elements of these arrays are updated automatically.you can make an array volatile in Java, there is no problem with that, neither compiler will flag any error not JVM will throw any exception but the tricky part is why you want to make an array volatile and what is the effect of making an array volatile in Java?
+olatile in Java but only changes to reference pointing to an array will be visible to all threads, not the whole array.
+
+
+
+12.what is stream api--->
+stream concept we can use process the object from the collection.it has a method filter and map by using''
+ this we can filter or map with out 
+loop code in single line we can perfomr same logic.l.stream().filter(l->i%2==0).collect.(collector.toList());
+
+
+
+13.what are bean scope
+when we define a bean we can declare the scope for the bean like how long does that object live, and how many objects will be created for that bean throughout. Basically, it controls the instance creation of the bean and it is managed by the spring container.
+Bean Scopes in Spring 
+The spring framework provides five scopes for a bean. We can use three of them only in the context of web-aware Spring ApplicationContext and the rest of the two is available for both IoC container and Spring-MVC container. The following are the different scopes provided for a bean: 
+    Singleton: Only one instance will be created for a single bean definition per Spring IoC container and the same object will be shared for each request made for that bean.
+    Prototype: A new instance will be created for a single bean definition every time a request is made for that bean.
+    Request: A new instance will be created for a single bean definition every time an HTTP request is made for that bean. But Only valid in the context of a web-aware Spring ApplicationContext.
+    Session: Scopes a single bean definition to the lifecycle of an HTTP Session. But Only valid in the context of a web-aware Spring ApplicationContext.
+    Global-Session: Scopes a single bean definition to the lifecycle of a global HTTP Session. It is also only valid in the context of a web-aware Spring ApplicationContext.
+
+
+
+14.checked and unchecked exception checked exception happen in compile time and unchecked exception happen in runtime.
+
+
+
+
+16.jdbc vs hybernate
+two ways of connecting to the database (i.e.) JDBC and Hibernate.
+In JDBC, one needs to write code to map the object model’s data representation to the schema of the relational model.	Hibernate maps the object model’s data to the schema of the database itself with the help of annotations.
+2.	JDBC enables developers to create queries and update data to a relational database using the Structured Query Language (SQL).	Hibernate uses HQL (Hibernate Query Language) which is similar to SQL but understands object-oriented concepts like inheritance, association etc.	3.	JDBC code needs to be written in a try catch block as it throws checked exception(SQLexception).	Whereas Hibernate manages the exceptions itself by marking them as unchecked.
+4.	JDBC is database dependent i.e. one needs to write different codes for different database.	Whereas Hibernate is database independent and same code can work for many databases with minor changes.
+5.	Creating associations between relations is quite hard in JDBC.	Associations like one-to-one, one-to-many, many-to-one, and many-to-many can be acquired easily with the help of annotations
+
+jdbc need lot of code we need to write a query explicitly but in hybernate we dont need to write a query.d
+
+
+
+
+
+
+17.request mapping internal working
+the annotation is used to map web requests to Spring Controller methods.
+in Spring MVC applications, the RequestDispatcher (Front Controller Below) servlet is responsible for routing incoming HTTP requests to handler methods of controllers.
+request would iterate on all the method present in the controller then matching method will be invoked for further  process
+
+
+19.different b/w save and merge  Hibernate Session Methods - save, persist, saveOrUpdate, get, load, merge, delete
+session.save is used for persist jpa entity object to dp
+session.persist it will persist jpa entity object into dp
+session.saveorupdate it will save or update existing entity in dp
+sesiion.get it used for retriving jpa entity object persisting instance from dp
+session.delete it used for delete persisting entity object
+session.load
+session.merge
+Save() method generates the primary key and inserts the record in the database. It is similar to the persist() method in JPA but it behaves differently in a detached instance by creating the duplicate record upon database commit.
+Update():Update() is used to update the existing database record. It returns an exception if the record is not found or called in a transient instance.
+saveOrUpdate(): It save
+s or updates the database based on the entity passed. It does not return an exception in the transient state but it makes the state to persistent during a database operation.
+merge(): Values from a detached entity are updated to the database when the merge() is used by changing the detached entity to the persistent state.
+delete(): Delete method works in persistent mode to remove the entity from the database. An exception is returned if no record is found in the database
+
+
+
+20.spring ioc
+
+The Spring container is at the core of the Spring Framework. The container will create the objects, wire them together, configure them, and manage their complete life cycle from creation till destruction. The Spring container uses DI to manage the components that make up an application. These objects are called Spring Beans, 
+here are two types of IoC containers. They are:
+
+    BeanFactory
+    ApplicationContext
+The ApplicationContext interface is built on top of the BeanFactory interface. It adds some extra functionality than BeanFactory 
+such as simple integration with BeanFactory can still be used for lightweight applications like mobile devices or applet-based 
+applications where data volume and speed is significant
+Bean life cycle is managed by the spring container. When we run the program then, first of all, the spring container gets started.
+ After that, the container creates the instance of a bean as per the request, and then dependencies are injected. And finally,
+ the bean is destroyed when the spring container is closed. Therefore, if we want to execute some code on the bean instantiation
+ and just after closing the spring container, then we can write that code inside the custom init() method and the destroy() method
+
+
+21.compareable and comparators
+ if sorting of objects needs to be based on natural order then use Comparable whereas if you sorting needs to be done on attributes of different objects, then use Comparator in Java
+ Comparable provides a single sorting sequence. In other words, we can sort the collection on the basis of a single element such as id, name, and price.	The Comparator provides multiple sorting sequences. In other words, we can sort the collection on the basis of multiple elements such as id, name, and price etc.
+2) Comparable affects the original class, i.e., the actual class is modified.	Comparator doesn't affect the original class, i.e., the actual class is not modified.
+3) Comparable provides compareTo() method to sort elements.	Comparator provides compare() method to sort elements.
+4) Comparable is present in java.lang package.	A Comparator is present in the java.util package
+
+
+
+23.diff crud repo and jpa repo
+jpa repository is used in hibernate in the later version hybernate in the later version of spring boot tbis was introduced  method calles as find all methtod
+it find all the contents in the table and retuns the list of entiyt class object
+jPA extend crudRepository and PagingAndSorting repository	Crud Repository is the base interface and it acts as a marker interface.
+2	Batch support	JPA also provides some extra methods related to JPA such as delete records in batch and flushing data directly to a database.	It provides only CRUD functions like findOne, saves, etc.
+3	Pagination support	JPA repository also extends the PagingAndSorting repository. It provides all the method for which are useful for implementing pagination.	Crud Repository doesn't provide methods for implementing pagination and sorting.
+4	Use Case	JpaRepository ties your repositories to the JPA persistence technology so it should be avoided.	We should use CrudRepository or PagingAndSortingRepository depending on whether you need sorting and paging or not.
+
+Pagination is a technique for splitting a list of multiple records into sublists. For example, you search with a keyword on Google and receives tens of thousands of results. However, every Google page displays only 10 results for you. Other results will show on next pages
+
+
+24.string buffer and spring builder
+string buffer is muttable class every method in  string buffer is synchronised and thread safe
+string builder lso mutable  but methods are non synchronised not thread safe
+
+
+
+25.== and equls difference
+ Equal (==) operator:- It compare primitives based on their values, and objects based on their reference.
+but equal()mehtod compare objects content
+equals() method for content comparison. In simple 
+
+
+
+
+26.non access specifiers
+Java provides a rich set of modifiers. They are used to control access mechanism and also provide information about class functionalities to JVM. They are divided into two categories : – 
+    Access Modifiers : Java’s access modifiers are public, private, and protected. Java also defines a default access level (called package-private). 
+How they work?
+    public: When a member of a class is modified by public, then that member can be accessed by any other code. 
+    private: When a member of a class is specified as private, then that member can only be accessed by other members of its class. 
+    Now you can understand why main( ) has always been preceded by the public modifier. It is called by code that is outside the program—that is, by the Java run-time system. When no access modifier is used, then by default the member of a class is public within its own package, but cannot be accessed outside of its package. protected applies only when inheritance is involved. 
+   : Access Modifiers in Java
+    Non-access modifiers : In java, we have 7 non-access modifiers. They are used with classes, methods, variables, constructors etc to provide information about their behavior to JVM.They are 
+        static
+        final
+        abstract
+        synchronized
+        transient
+        volatile
+        native
+When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object.
+
+transient is a variables modifier used in serialization. At the time of serialization, if we don’t want to save value of a particular variable in a file, then we use transient keyword. When JVM comes across transient keyword, it ignores original value of the variable and save default value of that variable data type.
+transient keyword plays an important role to meet security constraints. There are various real-life examples where we don’t want to save private data in file
+
+
+
+
+27.iterators
+Iterators are used in the Collection framework in Java to retrieve elements one by one. There are three iterators in Java
+    Enumeration
+    Iterator
+    ListIterator
+    Enumeration is the first iterator present from JDK 1.0, rests are included in JDK 1.2 with more functionality.
+    Enumeration is for legacy classes(Vector, Hashtable) only. Hence it is not a universal iterator.
+    Remove operations can’t be performed using Enumeration.
+    Only forward direction iterating is possible.
+It is a universal iterator as we can apply it to any Collection object. 
+only forward direction iterating is possible.read and remove operation its support
+Replacement and addition of new element is not supported by Iterator.
+It is only applicable for List collection implemented classes like ArrayList, LinkedList,
+
+
+
+
+31.diff default and static
+Unlike other abstract methods these are the methods can have a default implementation. If you have default method in an interface, it is not mandatory to override (provide body) it in the classes that are already implementing this interface.
+In short, you can access the default methods of an interface using the objects of the implementing classes
+they are declared using the static keyword and will be loaded into the memory along with the interface. You can access static methods using the interface name.
+If your interface has a static method you need to call it using the name of the interface, just like static methods of a class.
+
+The static keyword in Java is used for memory management mainly. We can apply static keyword with variables, methods, blocks and nested classes. The static keyword belongs to the class 
+A Java default keyword is an access modifier. If you didn't assign any access modifier to variables, methods, constructors and, classes, by default, it is considered as default access modifier. 
+
+
+
+
+32.remove data from array list
+arraylist has a remove method we can use that to remove the element from the arraylist
+
+
+
+
+
+38.security used in project
+To add spring security to spring boot, first, we add the dependency spring-boot-starter-security	
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency> 
+Extending WebSecurityConfigureAdapter
+Next, create a class that extends the WebSecurityConfigureAdapter. Add the annotation @EnableWebSecurity to the class to tell spring that this class is a spring security configuration.
+Override the two overloaded methods configure(HttpSecurity) and configure(AuthenticationManagerBuilder).
+The configure(HttpSecurity) defines the mapping of secured URLs or paths that will determine if the user can access specific pages.
+The configure(AuthenticationmanagerBuilder) determines how the security will handle the retrieval of user information commonly in the database.
+.antMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/")
+                .loginProcessingUrl("/login")
+                .failureUrl("/?login_error")
+                .successHandler(authenticationSucc
+that any request for “/” or index or CSS and js and images are not secured and are all permitted.
+that any request with starting URL of “/user/” can only be viewed by user that has ROLE_USER or ROLE_ADMIN authorities.
+that any request with starting URL of “/admin/” can only be viewed by the user that has ROLE_ADMIN.
+if the user is not authenticated, then the user will be redirected to form the login page which is in the “/” URL.
+the loginProcessingUrl(“/login”) tells you that your form should have an action=’/login’.
+the failureUrl(“/?login_error”) means that if the username/password is incorrect, the user will be redirected to this page.
+the successHandler(authenticationSuccessHandler) is our own implementation of AuthenticationSuccessHandler interface so that we can redirect the user depending on its role
+
+
+
+
+
+39.clone and which interface
+ whose object clone we want to create otherwise it will throw CloneNotSupportedException when clone method is called on that class’s object.clonable interface
+
+
+
+
+40.what techlogies used in project
+webservices microservices hybernate sql spring boot postman  email apis rest 
+
+
+41.how maven work if there is no given version in maven what happen
+Each maven dependency defined in the pom must have a version either directly or indirectly for example, through dependencyManagement or parent. That being said, if the version is not given, then the version provided in the dependencyManagement or the parent pom will be used.
+For example: in the pom (only important sections are mentioned) given below, no version is provided for the artifact jstl. However, in the "mvn dependency:tree", it shows that jstl version 1.2 is included. And looking at the spring-boot-starter-parent, for the version 2.3.3.RELEASE pom, it includes jstl version 1.2.
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.3.3.RELEASE</version>
+</parent>
+<dependencies>
+   ....
+   <dependency>
+       <groupId>javax.servlet</groupId>
+       <artifactId>jstl</artifactId>
+   </dependency>
+   ....
+</dependencies>
+
+
+
+
+
+
+
+42.what kind of defect you got in your project
+Following are some of the basic types of defects in the software development:
+    Arithmetic Defects:
+    It include the defects made by the developer in some arithmetic expression or mistake in finding solution of such arithmetic expression. This type of defects are basically made by the programmer due to access work or less knowledge. Code congestion may also lead to the arithmetic defects as programmer is unable to properly watch the written code.
+    Logical Defects:
+    Logical defects are mistakes done regarding the implementation of the code. When the programmer doesn’t understand the problem clearly or thinks in a wrong way then such types of defects happen. Also while implementing the code if the programmer doesn’t take care of the corner cases then logical defects happen. It is basically related to the core of the software.
+    Syntax Defects:
+    Syntax defects means mistake in the writing style of the code. It also focuses on the small mistake made by developer while writing the code. Often the developers do the syntax defects as there might be some small symbols escaped. For example, while writing a code in C++ there is possibility that a semicolon(;) is escaped.
+    Multithreading Defects:
+    Multithreading means running or executing the multiple tasks at the same time. Hence in multithreading process there is possibility of the complex debugging. In multithreading processes sometimes there is condition of the deadlock and the starvation is created that may lead to system’s failure.
+    Interface Defects:
+    Interface defects means the defects in the interaction of the software and the users. The system may suffer different kinds of the interface testing in the forms of the complicated interface, unclear interface or the platform based interface.
+    Performance Defects:
+    Performance defects are the defects when the system or the software application is unable to meet the desired and the expected results. When the system or the software application doesn’t fulfill the users’s requirements then that is the performance defects. It also includes the response of the system with the varying load on the system
+ug:
+Sometimes most people are confused between defect and bug, they say that bug is the informal name of defect. Actually bugs are faults in system or application which impact on software functionality and performance. Usually bugs are found in unit testing by testers.
+There are different types of bugs, some of them are given below.
+    Functional Errors
+    Compilation Errors
+    Missing commands
+    Run time Errors
+    Logical errors
+    Inappropriate error handling
+Above given these errors lead to bug.
+Failure:
+    When a defect reaches the end customer, it is called as Failure
+
+
+
+44.what is ddl and dml//triggered in sql
+ DDL is short name of Data Definition Language, which deals with database schemas and descriptions, of how the data should reside in the database.
+    CREATE - to create a database and its objects like (table, index, views, store procedure, function, and triggers)
+    ALTER - alters the structure of the existing database
+    DROP - delete objects from the database
+    TRUNCATE - remove all records from a table, including all spaces allocated for the records are removed
+    COMMENT - add comments to the data dictionary
+    RENAME - rename an object
+DML is short name of Data Manipulation Language which deals with data manipulation and includes most common SQL statements such SELECT, INSERT, UPDATE, DELETE, etc., and it is used to store, modify, retrieve, delete and update data in a database.
+    SELECT - retrieve data from a database
+    INSERT - insert data into a table
+    UPDATE - updates existing data within a table
+    DELETE - Delete all records from a database table
+    MERGE - UPSERT operation (insert or update)
+    CALL - call a PL/SQL or Java subprogram
+    EXPLAIN PLAN - interpretation of the data access path
+    LOCK TABLE - concurrency Control
+DCL is short name of Data Control Language which includes commands such as GRANT and mostly concerned with rights, permissions and other controls of the database system.
+    GRANT - allow users access privileges to the database
+    REVOKE - withdraw users access privileges given by using the GRANT command
+TCL is short name of Transaction Control Language which deals with a transaction within a database.
+    COMMIT - commits a Transaction
+    ROLLBACK - rollback a transaction in case of any error occurs
+    SAVEPOINT - to rollback the transaction making points within groups
+    SET TRANSACTION - specify characteristics of the transaction
+
+
+
+
+
+
+
+45.which is better interface are abstraction
+An interface is a blueprint used to implement a class. It is a collection of abstract methods and contains no concrete methods, unlike abstract class. However, the interface offers full abstraction in Java, something that abstract classes cannot do
+ abstraction as the process of hiding internal details of implementation and only showing essential functionality things to the user.
+Use when several implementations of the same type share common behavior, Additionally, use it if you require a base class.
+Best used when various implementations share only method signature. Also, a good choice when your classes need additional behavior or dependency injection
+
+
+
+
+47.bean factory and ioc container
+n the Spring framework, we don’t create the instance of the dependencies rather the framework does this for us.
+IoC – Inversion of Control means, we don’t have the control to create the dependencies rather the framework does it for us.
+ The code that is responsible for doing the dependency injection is known as IoC Container.
+    Decoupling the objects and its executions.
+    Better code Maintainability.
+    Easy code Testing due to loose coupling between the interfaces and implementations.
+Two types of Spring IoC Containers
+Spring provides the following two types of containers:
+    BeanFactory container
+    ApplicationContext container
+Spring framework provides two IOC container for managing, configuring and manipulating beans. One is BeanFactory and the other is Application Context. 
+The application context interface extends BeanFactory to enhance the functionality of BeanFactory
+
+
+lazy loading 
+Lazy loading (also called on-demand loading) is an optimization technique for the online content, be it a website or a web app.
+Instead of loading the entire web page and rendering it to the user in one go as in bulk loading, the concept of lazy loading 
+assists in loading only the required section and delays the remaining, until it is needed by the user.
+The concept of delaying the loading of an object until one needs it is known as lazy loading. In other words,
+ it is the process of delaying  instantiating the class until required. Lazy loading is important in
+ a scenario where the cost of creating objects is high, or usage of the object is rare in the program. Lazy loading 
+is a technique that enhances the efficiency of the program. In this section, we will discuss lazy loading in detai
+object will not created untill its required
+Unnecessary code execution is avoided.
+Optimal usage of time and space resources makes it a cost-effective approach from the point of view of
+	 business persons. (website owners)
+
+
+
+
+Design Patterns in Java
+A design patterns are well-proved solution for solving the specific problem/task.
+Now, a question will be arising in your mind what kind of specific problem? Let me explain by taking an example.
+Problem Given:
+Suppose you want to create a class for which only a single instance (or object) should be created and that single object can be used by all other classes.
+Solution:
+Singleton design pattern is the best solution of above specific problem. So, every design pattern has some specification or set of rules for solving the problems. What are those specifications, you will see later in the types of design patterns.
+But remember one-thing, design patterns are programming language independent strategies for solving the common object-oriented design problems. That means, a design pattern represents an idea, not a particular implementation.
+By using the design patterns you can make your code more flexible, reusable and maintainable. It is the most important part because java internally follows design patterns.
+To become a professional software developer, you must know at least some popular solutions (i.e. design patterns) to the coding problems.
+Advantage of design pattern:
+    They are reusable in multiple projects.
+    They provide the solutions that help to define the system architecture.
+    They capture the software engineering experiences.
+    They provide transparency to the design of an application.
+    They are well-proved and testified solutions since they have been built upon the knowledge and experience of expert software developers.
+    Design patterns don?t guarantee an absolute solution to a problem. They provide clarity to the system architecture and the possibility of building a better system.
+When should we use the design patterns?
+We must use the design patterns during the analysis and requirement phase of SDLC(Software Development Life Cycle).
+Design patterns ease the analysis and requirement phase of SDLC by providing information based on prior hands-on experiences.
+Categorization of design patterns:
+Basically, design patterns are categorized into two parts:
+    Core Java (or JSE) Design Patterns.
+    JEE Design Patterns.
+Core Java Design Patterns
+In core java, there are mainly three types of design patterns, which are further divided into their sub-parts:
+1.Creational Design Pattern
+    Factory Pattern
+    Abstract Factory Pattern
+    Singleton Pattern
+    Prototype Pattern
+    Builder Pattern.
+2. Structural Design Pattern
+    Adapter Pattern
+    Bridge Pattern
+    Composite Pattern
+    Decorator Pattern
+    Facade Pattern
+    Flyweight Pattern
+    Proxy Pattern
+3. Behavioral Design Pattern
+    Chain Of Responsibility Pattern
+    Command Pattern
+    Interpreter Pattern
+    Iterator Pattern
+    Mediator Pattern
+    Memento Pattern
+    Observer Pattern
+    State Pattern
+    Strategy Pattern
+    Template Pattern
+    Visitor Pattern
+2EE design patterns are built for the developing the Enterprise Web-based Applications.
+In J2EE , there are mainly three types of design patterns, which are further divided into their sub-parts:
+ Presentation Layer Design Pattern
+    Intercepting Filter Pattern
+    Front Controller Pattern
+    View Helper Pattern
+    Composite View Pattern
+2. Business Layer Design Pattern
+    Business Delegate Pattern
+    Service Locator Pattern
+    Session Facade Pattern
+    Transfer Object Pattern
+3. Integration Layer Design Pattern
+    Data Access Object Pattern
+    Web Service Broker Pattern
+
+
+
+49.what kind of scema u used collection of tables with rows and column overall layout(overall design)
+sales db schema
+Relational Model
+we create different table for different modules and we make relation with foreign key
+
+
+
+
+
+51.plugin used in projet
+i use maven for plugins i plug in jasper and email like thats.Maven is a build automation tool used primarily for Java project
+The Spring Boot Maven Plugin provides Spring Boot support in Apache Maven, letting you package executable jar or war archives and run an application “in-place”. To use it, you must use Maven 3.2 (or later).
+The Spring Boot Maven plugin provides many convenient features:
+    It collects all the jars on the classpath and builds a single, runnable "über-jar", which makes it more convenient to execute and transport your service.
+    It searches for the public static void main() method to flag as a runnable class.
+    It provides a built-in dependency resolver that sets the version number to match Spring Boot dependencies. You can override any version you wish, but it will default to Boot’s chosen set of versions.When you create Spring boot project using SPRING INITIALIZR then by default this plugin will be added this your spring boot project. 
+
+
+52.how jsp page get data from webservice
+i use session to get a data from webservices it has  a method to set and get a value
+we can also use jstl tag to get data from the the servelet
+
+
+53.how to optimise the code
+Avoid Writing Long Methods
+. Avoid Multiple If-else Statements
+ Avoid Getting the Size of the Collection in the Loop
+Use Primitive Types Wherever Possibledata access from stack memory is faster than heap memory
+Avoid Creating Big Objects Often
+
+
+54.signification of app.prop file other extension for app.prop file
+Spring Boot provides various properties that can be configured in the application.properties file.
+ The properties have default values. We can set a property(s) for the Spring Boot application. Spring Boot also allows us to define our own property if required.
+The application.properties file allows us to run an application in a different environment. In short, we can use the application.properties file to:
+    Configure the Spring Boot framework
+    define our application custom configuration properties
+spring boot automatically load the application.properties file in the class path
+
+
+
+55.how you fix your defects
+ software bug arises when the expected result don't match with the actual results. 
+ors made by developers, architects.
+I use below steps to fix a bug:
+Step 1. Identify the bug.
+Ask for screenshots from reporter of the bug. Try to reproduce the bug in given scenario.
+Step 2. Analyze the error
+Capture the logs and try to analyse it carefully.
+Step 3. Discuss your findings with the team
+Look for the expected behavior and discuss this with the tester and verify your potential solution. 
+
+
+56.how to achive dead lock situation in servlet
+when two threads are waiting for each other to release the lock that situation called  deadlocked
+set of process blocked coz each process is holding a resourse and waiting for another resouse acquired by some other process.
+avoid  multible lock at once and keep local to the object
+
+
+
+
+57.deamon vs resourse thread
+Daemon thread is a low priority thread that runs in background to perform tasks such as garbage collection
+It provides services to user threads for background supporting tasks. It has no role in life than to serve user threads.
+Its life depends on user threads.
+It is a low priority thread.
+Daemon threads are low priority threads which always run in background and user threads are high priority threads which always run 
+in foreground. User Thread or Non-Daemon
+ are designed to do specific or complex task where as daemon threads are used to perform supporting tasks
+JVM will not force to user threads for terminating, so JVM will wait for user threads to terminate themselves.;
+	If all user threads have finished their work JVM will force the daemon threads to terminate
+User threads are created by the application.	Mostly Daemon threads created by the JVM.
+Mainly user threads are designed to do some specific task.	Daemon threads are design as to support the user threads.
+User threads are foreground threads.	Daemon threads are background threads.
+User threads are high priority threads.	Daemon threads are low priority threads.
+Its life independent.	Its life depends on user threads.
+useful for background supporting tasks such as garbage collection, releasing memory of unused objects and
+ removing unwanted entries from the cache
+
+
+
+58.java architecture
+Java Architecture is a collection of components, i.e., JVM, JRE, and JDK. It integrates the process of interpretation and compilation. 
+It defines all the processes involved in creating a Java program.
+ Java Architecture explains each and every step of how a program is compiled and executed.
+Java Architecture can be explained by using the following steps:
+There is a process of compilation and interpretation in Java.
+Java compiler converts the Java code into byte code.
+After that, the JVM converts the byte code into machine code.
+The machine code is then executed by the machine
+
+
+59.what is class loader
+Class loaders are responsible for loading Java classes during runtime dynamically to the JVM (Java Virtual Machine).
+ Also, they are part of the JRE (Java Runtime Environment).
+They are responsible for loading classes into memory.
+ there are three different class loaders here; application, extension, and bootstrap 
+ An application or system class loader loads our own files in the classpath.
+. Extension class loaders load classes that are an extension of the standard core Java classes.
+ bootstrap It's mainly responsible for loading JDK internal classes
+Class loaders are part of the Java Runtime Environment. When the JVM requests a class,
+ the class loader tries to locate the class and load the class definition into the runtime using the fully qualified class name.
+The java.lang.ClassLoader.loadClass() method is responsible for loading the class definition into runtime. It tries to load the class based on a fully qualified name.
+
+
+
+60.servlet config
+we can  configure the servlet in web.xml.there we can change the mapping url .we can change the url 
+The web.xml file is located in the WEB-INF directory of your Web application
+Servlet mapping controls how you access a servle
+configurations and mappings is URLs used to invoke these servlets.
+
+
+
+
+62.array list link list which scenario which you shoul use
+LinkedList is fast for adding and deleting elements, but slow to access a specific element. 
+ArrayList is fast for accessing a specific element but can be slow to add to either end, and especially slow to delete in the middle
+In sort, ArrayList is better to access data wherease LinkedList is better to manipulate data
+
+64.how we make hashmap  thread safe
+You can make HashMap thread safe by wrapping it with Collections.synchronizedMap()
+Collections.synchronizedMap(new HashMap<K, V>);
+Colecctions.synchronizedMap() was not as efficient in terms of performance in comaprison to ConcurrentHashMap
+
+
+66.design pattern in micro service--->
+aggreagate design pattern
+aggregate designpattern is a sevice that receives a request then makes requests of multiple services and combines the result  and responds to the request  
+API Gateway Design Pattern
+2It is a design pattern that acts as a single point of contact for incoming requests, 
+decides which microservice to send the request to get the data
+and also helps in aggregation of data from different microservices
+1.5 Database or Shared Database Design Patter
+This design pattern talks about that either a microservice will have its separate databas
+ or two or more microservices can share a common database
+
+
+
+67.how we configure datasourse in hibernate and spring--->
+Spring boot allows defining datasource configuration in both ways i.e. Java config and properties config. 
+DataSourceAutoConfiguration checks for DataSource.class (or EmbeddedDatabaseType.class) 
+on the classpath and few other things before configuring a DataSource bean for us
+
+
+68.application context in spring boot--->
+ApplicationContext is a interface within a  Spring Boot application for providig configuration information for spring. It represents 
+the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans.
+The container gets its instructions on what objects to instantiate, configure,
+and assemble by reading configuration metadata.it provide get bean method to retrive bean from the spring container.
+
+
+69.inner class---->
+Java inner class or nested class is a class that is declared inside the class
+Inner classes are a security mechanism in Java.some time we need another class for class. We know a class cannot be 
+associated with the access modifier private, but if we have the class as a member 
+of other class, then the inner class can be made private. And this is also used to access the private members of a class.logically grouping
+) Nested Inner class 
+2) Method Local inner classes created inside the classes
+3) Anonymous inner classes created inside the classes without the name
+4) Static nested  classes are not technically an inner class. They are like a static member of outer class.
+
+can we instantate abstract class
+We cannot create object for abstract class bcoz ,mostly abstract class contain "abstract methods" ,so abstract methods are incomplete methods.so we cannot estimate the memory of those methods how much they are going to occupy .This is one of the reason why we cannot create object for abstract class.
+abstract is for specification not for implementation
+
+
+
+
+default sever port
+8080
+
+
+which collecction concept we use in project
+list.
+
+
+why is manin mehtod static reason
+if not static we need to create object to invoke the main method .objects are created only in runtime only
+
+
+
+what are the different cache in hybernate
+Hibernate caching improves the performance of the application by pooling the object in the cache. It is useful when we have to fetch the same data multiple times.
+There are mainly two types of caching:
+    First Level Cache, and
+    Second Level Cache
+First Level Cache
+Session object holds the first level cache data. It is enabled by default. The first level cache data will not be available to entire application. An application can use many session object.
+Second Level Cache
+SessionFactory object holds the second level cache data. The data stored in the second level cache will be available to entire application. But we need to enable it explicitely.
+    EH (Easy Hibernate) Cache
+    Swarm Cache
+    OS Cache
+    JBoss Cache
+
+
+
+ 
+
+
+
+
+traverse throuh list
+forward direction backward direction
+Using listIterator Method
+    Create a list iterator object of a given ArrayList.
+    Use while loop with the condition as hasNext() method.
+    If hasNext() method returns false, loop breaks.
+    Else print the value using object.next() method.
+also use for loop and foreach loop
+
+
+
+diff persist and merge and save and update
+save method: it is used to insert the newly created object in the datastore. (Basically identifier value will be 0 for this). Like I create a new customer and call save operation, it will persist it in the datastore and generate the identifier.
+Is this correct? And if we call save on already persistent object not sure what will happen?
+update method: it is used to update the already persistent object in the datastore.(Basically identifier value will be some non zero value for this). Like I load a new customer and call update operation after update of some field value, it will update it in datastore.
+As per my understanding it should fail with some exception because as per API update is for detached object. Is this correct? If yes, what should we call to update the object in the same session (I mean if object is not detached). Another point is: what will happen if we call update on newly created object?
+saveOrUpdate method: it will call either of above based on unsaved-value checks (which it must be doing based on identifier zero or non zero value, right?) so if we have persistent customer object and we update last name of his and create a new account also, then saveOrUpdate will take care of it.
+Merge method: it will act like update but here if a persistent object with the same identifier is already in the session it will update the detached object values in the persistent object and save it.
+But if there is no persistent instance currently associated with the session, this will load the persistent object from the datastore and then update the value of detached object in loaded persistent object and then update it.
+
+
+
+
+
+can we use multiple main method
+es, you can have as many main methods as you like. You can have main methods with different signatures from main(String[]) which is called overloading, and the JVM will ignore those main methods.
+You can have one public static void main(String[] args) method in each class. Some people use those methods for testing. They can test the operation of each class individually. The JVM will only invoke the public static void main(String[] args) method in the class you name when you write java MyClass.
+public class TwoMain { 
+    public static void main(String args1[]) 
+    { 
+        System.out.println("First main"); 
+    } 
+    public static void main(String args2[]) 
+    { 
+        System.out.println("Second main");   
+    }  }  
+Those two methods have the same signature. The only way to have two main methods is by having two different classes each with one main method. The name of the class you use to invoke the JVM (e.g. java Class1, java Class2) determines which main method is called.
+
+
+
+
+
+
+
+
+lazy load in spring boot
+tarting with Spring Boot 2.2, spring beans can be lazy. That is, You could create beans as and when required. Let’s see how to implement lazy initialization with Spring Boot.
+What is lazy initialization?
+By default, Spring Framework creates and injects beans and it’s dependencies at the time of context creation or refresh. But with lazy mode, We could initialize beans as and when they are needed. Spring can do this through proxy objects as placeholder beans. When the a call happens to these proxies, Spring can detect and create an appropriate bean for them.
+How to enable Lazy Initialization?
+The concept of lazy bean loading is not new for Spring framework. But Spring Boot 2.2 just makes it easier for you. To begin with, There are a couple of ways to enable lazy initialization. They are,
+    Using properties file.
+    Using built-in methods from SpringApplication or SpringApplicationBuilder.
+We shall go through each of these approaches one by one.
+Using application properties
+This approach requires a newly introduced spring.main.lazy-initialization property entry. When set to true, beans in the application will be lazy loaded.
+section object session factory
+spring.main.lazy-initialization=true
+
+
+
+advandatge of saop
+what are SOAP Web services? SOAP Web Services. SOAP stands for Simple Object Access Protocol. It is a XML-based protocol for accessing web services. SOAP is a W3C recommendation for communication between two applications. By using SOAP, you will be able to interact with other programming language applications.
+
+
+
+can static mehtod overridek
+static mehtod run in compile time but overrie concept based on runtime
+we cannot override static methods because method overriding is based on dynamic binding at runtime and the static methods
+ are bonded using static binding at compile time. So, we cannot override static methods.
+disadvantage of sychro
+time taken will be high
+
+
+
+advandge restful api
+he first reason is its scalability. Yes, this attribute makes the protocol stand out when compared to others. 
+The reason behind this is server and client separation. You will have the product scaled without much of the difficulty
+Another reason which makes REST the right choice is because of its portability and flexibility. Yes, with the help
+ of REST one will be able to have indispensable need of data covered in one request. Not only this, but it also 
+it easy to perform the transfer of data from one server to another. It also gives you access to make the modifications
+ on the database at any moment. One also hosts back and front end on different servers which is a huge advantage to have.
+It brings in independence which is another reason to go ahead with REST. The separation amidst server and client exclusively
+ makes it easy for the protocol to work on different development projects and that too independently. The best part is that 
+
+it is also adaptable to different working platforms and syntax. This brings in a lot of opportunities to work on different
+ projects related to development
+
+
+
+var and jar file
+WAR stands for Web application ARchive war is used for web application with a specific directory structure. contains only Web related Java files like Servlets, JSP, HTML.
+JAR stands for Java ARchive collection .class file it consist of java logics
+For web-applications
+Jar : For desktop applications
+War : Working on browser
+Jar : Working on machine
+ war (web archive) File contains files of a web project. It may have servlet, xml, jsp, image, html, css, js etc. files.
+
+
+
+comoponent of micro services
+    Clients
+    Identity Providers
+    API Gateway
+    Messaging Formats
+    Databases
+    Static Content
+    Management
+    Service Discovery
+Clients:
+The client apps usually need to consume functionality from more than one microservice. The client needs to handle multiple calls to microservice endpoints if that consumption is performed directly. Client apps need to be updated frequently, making the solution harder to evolve.
+Identity Providers:
+The services are fine-grained and lightweight. The Identity Microservice must allow both user-driven and server-to-server access to identity data. Microservices allow applications to be created using a collection of loosely coupled services.
+According to Market Research Future, the microservices architecture market is expected to grow at approx. USD 33 Billion by 2023, at 17% of CAGR between 2017 and 2023
+API Gateway:
+The API Gateway is responsible for request routing, composition, and protocol translation. It provides each of the application’s clients with a custom API. For most microservices‑based applications, implementation of an API Gateway is very important for a single-entry point into a system.
+Microservices Architecture Market
+Microservices Architecture Market
+Messaging Formats:
+Synchronize and Asynchronized are the 2 types of messages through which they communicate. Every microservice in order to communicate either synchronously or asynchronously with other microservices. “Synchronous – HTTP is a synchronous protocol. The client sends a request and waits for a response from the service. The client code or message sender usually does not wait for a response.
+Databases:
+Microservice owns a private database to capture their data and implement the respective business functionality. Microservices databases are updated through their service API. The services provided by Microservices are carried forward to any remote service which supports inter-process communication for different technology stacks.
+Static Content:
+After the microservices communicate within themselves, they deploy the static content to a cloud-based storage service that can deliver them directly to the clients via Content Delivery Networks (CDNs).
+Cloud Microservices market
+Management:
+Management feature is a capability that allows operations and business users to configure services in run-time. For load balancers, the approaches to feature flags management in microservices architecture are a complex topic, especially when one business feature spans multiple microservices.
+Service Discovery:
+In a microservices application, the set of running service instances changes dynamically. Instances have dynamically assigned network locations. Consequently, for a client to make a request to service it must use a service‑discovery mechanism. A key part of service discovery is the service registry.
+
+
+
+getting client ip address httpservlet.getRemoteAddr()
+
+
+
+actuator 
+Spring Boot Actuator
+Spring Boot Actuator is a sub-project of the Spring Boot Framework. It includes a number of additional features 
+that help us to monitor and manage the Spring Boot application. It contains the actuator endpoints
+ (the place where the resources live). We can use HTTP and JMX endpoints to manage and monitor the Spring Boot application.
+ If we want to get production-ready features in an application, we should use the Spring Boot actuator.
+Spring Boot Actuator Features
+There are three main features of Spring Boot Actuator:
+    Endpoints
+    Metrics
+    Audit
+Endpoint: The actuator endpoints allows us to monitor and interact with the application. Spring Boot provides a number of built-in endpoints. We can also create our own endpoint. We can enable and disable each endpoint individually. Most of the application choose HTTP, where the Id of the endpoint, along with the prefix of /actuator, is mapped to a URL.
+For example, the /health endpoint provides the basic health information of an application. The actuator, by default, mapped it to /actuator/health.  
+Metrics: Spring Boot Actuator provides dimensional metrics by integrating with the micrometer. The micrometer is integrated into Spring Boot. It is the instrumentation library powering the delivery of application metrics from Spring. It provides vendor-neutral interfaces for timers, gauges, counters, distribution summaries, and long task timers with a dimensional data model.
+Audit: Spring Boot provides a flexible audit framework that publishes events to an AuditEventRepository. It automatically publishes the authentication events if spring-security is in execution.
+Enabling Spring Boot Actuator
+We can enable actuator by injecting the dependency spring-boot-starter-actuator in the pom.xml file.
+    <dependency>  
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-starter-actuator</artifactId>  
+        <version>2.2.2.RELEASE</version>  
+    </dependency>  
+dockors persistence 
+
+
+
+type of dependency injection
+constructor and setter injection
+
+
+
+
+//didnt come across this thing
+@primary annotation
+when there are multiple beans available of same type in Spring container, all of them are qualified to be
+ autowired to single-valued dependency. That causes ambiguity and leads to throw an exception by framework. 
+@Primary indicates that a bean should be given preference when multiple candidates are qualified to autowire 
+a single-valued dependency.
+.1. We use @Qualifier in Spring to autowire a specific bean among same type of beans, where as @Primary is used
+ to give high preference to the specific bean among multiple beans of same type to inject to a bean.
+
+3.2. Suppose that you have provided multiple beans of same type and Spring is responsible to autowire a bean for 
+that type (example: multiple datasources in single application), you need to tell Spring which bean should get autowired
+ by default by annotating bean with @Primary, and we can not use @Qualifier in that situation because Spring will lookup 
+for dependency in configuration phase.
+
+3.3. We can use @Qualifier and @Primary for the same bean. Use @Qualifier to inject specific bean otherwise Spring injects 
+bean by default which is annotated with @Primary.
+
+
+
+
+
+https://www.topjavatutorial.com/frameworks/hibernate/hibernate-inheritance-strategies/
+inheritance in hybernate
+Relational databases don’t have a straightforward way to map class hierarchies onto database tables.
+To address this, the JPA specification provides several strategies:hypernate support inheritance
+    We can map the inheritance hierarchy classes with the table of the database. There are three inheritance mapping strategies defined in the hibernate:
+
+    Table Per Hierarchy
+    Table Per Concrete class
+    Table Per Subclass
+first type of inheritance in hybernate  is 
+table per class hierarchy 
+Table per class - Each subclass has its own table, containing both the subclass and the base class properties.
+Table Per Concrete class(seperate table )
+tables are created as per class. But duplicate column is added in subclass tables.
+Table Per Subclass(seperate table but joined by foreign key)
+tables are created as per class but related by foreign key. So there are no duplicate columns
+
+
+
+static and dynamic binding
+Connecting a method call to the method body is known as binding/linking between method call and method definition.
+ which perticular method call which method be called
+is called binding
+There are two types of binding
+    Static Binding (also known as Early Binding).
+    Dynamic Binding (also known as Late Binding).
+binding at compile time is called static binding.binding happen before programe actually run ex method overloadding
+binding at run time is caleed dynamic binding .binding happen at run time  ex overridding
+If the compiler maps the method at compile-time, it is Static Binding or early binding. And, if the method is resolved at runtime, it is Dynamic Binding or late binding.
+
+
+Object class in Java
+Object class is present in java.lang package
+finalize() method : This method is called just before an object is garbage collected. 
+hashCode() : For every object, JVM generates a unique number which is hashcode.
+toString() : toString() provides String representation of an Object and used to convert an object to String
+getClass() : Returns the class object of “this” object and used to get actual runtime class of the object
+clone() : It returns a new object that is exactly the same as this object. For clone() method refer Clone() 
+ wait(), notify() notifyAll() are related to Concurrency.
+
+
+abstract class
+inputStream,outPutStream
+
+
+Serializable is a marker interface (has no data member and method). It is used to "mark" Java classes 
+so that the objects of these classes may get a certain capability. The Cloneable and Remote are also marker interfaces. 
+
+
+The Function interface has only one single method apply(). It can accept an object of any data type and returns a result of any datatype.runnable and  comparable
+A Supplier interface has only one single method called get(). It does not accept any arguments and returns an object of any data type.
+
+
+Built-in Packages
+These packages consist of a large number of classes which are a part of Java API.Some of the commonly used built-in packages are:
+1) java.lang: Contains language support classes(e.g classed which defines primitive data types, math operations).
+ This package is automatically imported.
+2)  java.io: Contains classed for supporting input / output operations.
+3)  java.util: Contains utility classes which implement data structures like Linked List,
+ Dictionary and support ; for Date / Time operations.
+
+
+
+self intro
+sir my name is muneeskumar  i am from karur tamilnadu i have done my graduation through bharathidasan university with aggregated percentage 70.9.about schooling 
+in sslc and hsc i secured 95% and 80% respectivly.i have 1 year experience in java developing .working as java developer in Plexus software
+security system private limited chennai.in that company the project i worked name zenn its margetiing domain software .its storing customer data and automate process
+for the client.Greeta Towers, Industrial Estate,
+Perungudi, OMR Phase 1,
+Chennai,
+
+
+wht is aggregation
+what is compositmposition and aggregation are two types of association which is used to represetn relationship between two class.
+in aggregation parent and child entity manitain hasa relationship but both can  also exist inpendently.
+in composition parent and child entity cant exist without parent entity we cnat directly or independently access child entity.
+
+working on hashmap
+error message in webservices
+what kind of error u faced in postman
+failsafe failload
+cuncurrent hasmap and hashmap
+exeception probocation
+hashcode and equals different
+how to create ownimmutable class
+what is spring api
+if dont have a embeded tomcat what you do
+different memmory in java
+server validation and client validataion
+jsp life cycle 
+session management
+constructor chaini
+
+
+
+
+ groupId helps to identify the project group while artifactId helps to identify the project.
+Conclusion
+The main difference between groupId and artifactId in Maven is that groupId specifies the id of the project group while artifactId
+ specifies the id of the project. In brief, these elements help to organize the projects of the organization
+
