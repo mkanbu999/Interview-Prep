@@ -416,6 +416,8 @@ Optimizing the code module.
 
 A comparator in Java is an interface (java.util.Comparator) that defines a method int compare(T o1, T o2) which compares two objects of the same type and returns an integer value indicating their order. The comparator is used to sort a collection of objects in a custom order defined by the implementer of the interface.
 
+On the other hand, Comparator is a separate class that implements the Comparator interface, and it allows you to define multiple different sort orders for the same type of objects. For example, you can create one Comparator class(CompareStrudentAge) to sort Person objects based on their age and another Comparator(CompareStrudentName) class to sort Person objects based on their name.(refer given ex below)
+
 Here is an example of a comparator that compares two strings based on their length:
 
 import java.util.Comparator;
@@ -435,7 +437,7 @@ System.out.println(list);
 
 This will print [dog, cat, giraffe, elephant]
 
-
+-------------------------------------------------------------------------------------------------
 another ex:
 
 import java.util.Comparator;
@@ -481,6 +483,140 @@ System.out.println(employees);
 
 
 This will print [Bob Smith: $65000.0, John Doe: $75000.0, Jane Doe: $80000.0].
+------------------------------------------------------------------------------------------------
+
+package practiseJavaProb;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class Main {
+  public static void main(String[] args) {
+    ArrayList<Student> students = new ArrayList<Student>();
+    students.add(new Student("John", 20));
+    students.add(new Student("Jane", 18));
+    students.add(new Student("Bob", 22));
+    
+    Collections.sort(students, new StudentComparatorName());
+	Collections.sort(students, new StudentComparatorAge());
+    
+    for (Student student : students) {
+      System.out.println(student.getName());
+    }
+  }
+}
+
+class Student {
+  private String name;
+  private int age;
+  
+  public Student(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  public String getName() {
+    return name;
+  }
+  
+  public int getAge() {
+    return age;
+  }
+}
+
+class StudentComparatorName implements Comparator<Student> {
+  public int compare(Student student1, Student student2) {
+    return student1.getName().compareTo(student2.getName());
+  }
+}
+
+class StudentComparatorAge implements Comparator<Student> {
+  public int compare(Student student1, Student student2) {
+     return student1.getAge() - student2.getAge();
+  }
+}
+
+Bob
+Jane
+John
+======================================================================================================================================================
+6.comparable
+
+Comparable is an interface used for sorting elements of the same type, and is defined in the java.lang package. The compareTo method of this interface compares the current object with the given object. If the current object is smaller, it returns a negative number, if it is equal, it returns zero, and if it is greater, it returns a positive number.
 
 
-=========================================================================================================================================================
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+  public static void main(String[] args) {
+    ArrayList<Student> students = new ArrayList<Student>();
+    students.add(new Student("John", 20));
+    students.add(new Student("Jane", 18));
+    students.add(new Student("Bob", 22));
+    
+    Collections.sort(students);
+    
+    for (Student student : students) {
+      System.out.println(student.getName());
+    }
+  }
+}
+
+class Student implements Comparable<Student> {
+  private String name;
+  private int age;
+  
+  public Student(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+  
+  public String getName() {
+    return name;
+  }
+  
+  public int getAge() {
+    return age;
+  }
+  
+  public int compareTo(Student other) {
+    return this.age - other.age;
+  }
+}
+
+Jane
+John
+Bob
+
+======================================================================================================================================================
+7.Generics
+
+Generics in Java are a feature that allows you to write type-safe and reusable code. With generics, you can define a class, interface, or method that can work with objects of any type. The type of objects the class, interface, or method can work with is specified as a parameter in angle brackets <>.
+
+
+
+
+https://youtu.be/JY8-UMQ7vmY  (daily code buffer)
+
+public class MyClass<T> {
+  private T value;
+
+  public MyClass(T value) {
+    this.value = value;
+  }
+
+  public T getValue() {
+    return value;
+  }
+
+  public void setValue(T value) {
+    this.value = value;
+  }
+}
+
+
+======================================================================================================================================================
+8.
+
+Collection
