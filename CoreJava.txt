@@ -7,13 +7,13 @@ By using Genrics we can dynamically change the data type while creating object .
 
 
 
- Comparator--->customised sorting order by passing object as argument
+ Comparator--->
+ customised sorting order by passing object as argument
  Comparator  is interface used to order a object in user defined class .its capable of compare two object
  from different class .its would present in util package.
 
+
 Collections class--->
-
-
 
  Collection--->
   In java collection is a frameWork .Collection  stores group of object in it . it has readily

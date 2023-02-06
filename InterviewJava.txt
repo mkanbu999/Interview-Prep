@@ -582,6 +582,7 @@ class Student implements Comparable<Student> {
   
   public int compareTo(Student other) {
     return this.age - other.age;
+	//return this.name.compareTo(other.name);
   }
 }
 
@@ -620,3 +621,466 @@ public class MyClass<T> {
 8.
 
 Collection
+
+In java collection is a frameWork .Collection  stores group of object in it . it has readily
+ available logic to deal or manupulate the different dataStructue. 
+ 
+ The java.util package in Java contains several classes and interfaces that make up the Collection framework. These classes and interfaces provide a way to work with collections of objects. Here is a list of classes and interfaces:
+
+Interfaces:
+
+Collection
+Deque
+List
+Queue
+Set
+SortedSet
+Map
+ConcurrentMap
+SortedMap
+NavigableMap
+Map.Entry
+Classes:
+
+ArrayList
+LinkedList
+Vector
+Stack
+HashSet
+LinkedHashSet
+TreeSet
+EnumSet
+HashMap
+LinkedHashMap
+TreeMap
+Hashtable
+Properties
+IdentityHashMap
+WeakHashMap
+EnumMap
+AbstractMap
+AbstractList
+AbstractSequentialList
+AbstractSet
+AbstractCollection
+These classes and interfaces provide a wide range of functionality for working with collections of objects in Java.
+
+
+ArrayList
+
+Internally its implemented as dynamic Array.Initial size of ArrayList is 10 when we exceed the 
+ Initial size automattically Arraylist increases the size of 1.5 times.in ArrayList we dont need to use index no
+ to insert data in obj by using add method.maintain insertion order can consist of duplicate value.
+ if we takl about advantage reading of data would be give  best perfomence.but in writing suffiling will happen.
+ its required continiues memory(array list implements List interface)
+hold only non primitive.its not synchronised by default but we can make it synchronised  collection.synchonizeList().
+
+//if  need to insertion and delete perform frequently where we can use linked list it give good perfomence.
+
+ArrayList is a class in Java that implements the List interface and provides a dynamic array implementation of it. It allows you to store a collection of elements and provides various operations for adding, removing, and accessing elements.
+
+Some of the key features of ArrayList are:
+
+Dynamic size: The size of an ArrayList can grow or shrink dynamically as elements are added or removed.
+
+Index-based access: You can access elements in an ArrayList using an index, which starts from 0.
+
+Order preservation: The order of elements in an ArrayList is preserved and can be easily accessed in the same order they were added.
+
+Type safety: ArrayList is a generic class and allows you to specify the type of elements it can store. This helps to ensure type safety and prevents errors related to type mismatch.
+
+ArrayList in Java allows you to store duplicate elements. You can add multiple elements with the same value to an ArrayList, and it will keep all of them
+
+ArrayList is that it maintains the insertion order of its elements, meaning that the order in which elements are added to the list is the same order in which they will be retrieved
+
+Here's an example of how you can create an ArrayList and perform some basic operations with it:
+
+import java.util.ArrayList;
+
+public class Main {
+  public static void main(String[] args) {
+    ArrayList<Integer> numbers = new ArrayList<Integer>();
+    numbers.add(10);
+    numbers.add(20);
+    numbers.add(30);
+    
+    System.out.println("Size of the list: " + numbers.size());
+    System.out.println("Element at index 1: " + numbers.get(1));
+    
+    numbers.remove(1);
+    System.out.println("Size of the list after removing an element: " + numbers.size());
+    
+    for (Integer number : numbers) {
+      System.out.println(number);
+    }
+  }
+}
+-----------------------------------------------------------------------------------------------------------
+
+LinkedList
+its stored group of object in it.
+In LinkedList there is two type linkedList is there one singly linked list another type is doubly link list
+its doesnt required continiues memory to store like arraylist.. insert and delete elements in the middle of the list relatively quickly
+because its stored the value with next value memory address.
+
+Dynamic size: LinkedList can dynamically grow or shrink in size as elements are added or removed.
+
+Insertions and deletions: LinkedList provides efficient insertions and deletions at arbitrary positions compared to other linear data structures like arrays.
+
+Traversal in both directions: LinkedList provides the advantage of a doubly linked list data structure, allowing for efficient traversal in both forward and backward directions.
+
+Memory usage: LinkedList has a lower memory overhead compared to arrays as it only requires the memory for the element data and references to the previous and next elements.
+
+In summary, LinkedList is a useful data structure for applications that require efficient insertions and deletions at arbitrary positions and when memory usage is a concern.
+LinkedList is generally slower for reading elements compared to ArrayList because of its underlying data structure. In a LinkedList, each element is stored as a separate object with a reference to the previous and next element, so in order to access an element, the system must traverse the list of elements starting from the first element until it reaches the desired element. This results in a time complexity of O(n) for accessing an element, where n is the number of elements in the list.
+
+import java.util.LinkedList;
+
+public class LinkedListExample {
+    public static void main(String[] args) {
+        // Create a linked list
+        LinkedList<String> ll = new LinkedList<>();
+
+        // Add elements to the linked list
+        ll.add("Apple");
+        ll.add("Banana");
+        ll.add("Carrot");
+
+        // Print the linked list
+        System.out.println("Linked List: " + ll);
+
+        // Insert an element at the beginning of the linked list
+        ll.addFirst("Cherry");
+        System.out.println("Linked List after adding at the beginning: " + ll);
+
+        // Insert an element at the end of the linked list
+        ll.addLast("Date");
+        System.out.println("Linked List after adding at the end: " + ll);
+
+        // Insert an element at a specified position
+        ll.add(3, "Eggplant");
+        System.out.println("Linked List after adding at position 3: " + ll);
+
+        // Remove the first element of the linked list
+        ll.removeFirst();
+        System.out.println("Linked List after removing the first element: " + ll);
+
+        // Remove the last element of the linked list
+        ll.removeLast();
+        System.out.println("Linked List after removing the last element: " + ll);
+
+        // Remove an element at a specified position
+        ll.remove(2);
+        System.out.println("Linked List after removing element at position 2: " + ll);
+    }
+}
+
+Singly Linked List: In a singly linked list, each element (node) has a reference to the next element in the list, but not to the previous element. This type of linked list is used when you need to maintain a linear sequence of elements and only need to traverse the list in one direction.
+
+Doubly Linked List: In a doubly linked list, each element (node) has a reference to both the previous and next elements in the list. This type of linked list is used when you need to traverse the list in both directions, and also provides faster access to elements compared to a singly linked list.
+
+memmory concern we use any of them
+
+
+
+--------------------------------------------------------------------------------------------------------------
+When to use ArrayList:
+
+ In a linked list, each element is stored as an individual object with a reference to the previous and next element, and in order to retrieve an element at a specific index, the linked list must be traversed from the beginning or end to find the desired element. This can be time-consuming and results in slower read performance compared to an array-based data structure like ArrayList.
+
+On the other hand, adding or removing elements from a LinkedList is faster than adding or removing elements from an ArrayList. This is because an ArrayList requires shifting elements over to make room for new elements or filling the gap left by removed elements, while a LinkedList only requires updating the references to the previous and next elements.no suffiling
+
+In an ArrayList, elements are stored in contiguous memory locations, and the index of each element is used to directly access the element in memory. This means that when reading an element from an ArrayList, the desired element can be directly accessed without the need to traverse through the entire list
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+Set
+
+its an interface.it can store only unique value only and its not follow insertion order
+
+note:
+The order of elements matters in some data structures because it affects the way the elements are stored, retrieved, and manipulated, and this in turn can determine the time and space complexity of operations on the data structure. For example, in an array or a linked list, the order of elements determines their relative positions and impacts the time it takes to search for an element or insert a new one. In a data structure like a hash table, the order of elements is not guaranteed and may change over time, but the operations on the data structure are optimized for fast access and insertion based on the hash values of the elements.
+
+In algorithms and programming, the order of elements can also affect the output and performance of operations, such as sorting, searching, and manipulating elements. For example, in sorting algorithms, the order of elements determines the final sorted output, and different sorting algorithms have different time and space complexities based on the order of elements.
+
+Therefore, it is important to choose the appropriate data structure and to understand the implications of the order of elements when designing and implementing algorithms.
+
+
+HashSet: a hash table-based implementation that does not maintain the order of elements and offers fast add, remove, and contains operations with average time complexity O(1).
+
+import java.util.HashSet;
+
+public class Main {
+  public static void main(String[] args) {
+    HashSet<Integer> set = new HashSet<>();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    System.out.println(set); // [1, 2, 3]
+    set.remove(2);
+    System.out.println(set); // [1, 3]
+    System.out.println(set.contains(3)); // true
+  }
+}
+
+TreeSet: a sorted set implementation based on a tree data structure. It maintains the order of elements and offers fast add, remove, and contains operations with average time complexity O(log n).
+
+import java.util.TreeSet;
+
+public class Main {
+  public static void main(String[] args) {
+    TreeSet<Integer> set = new TreeSet<>();
+    set.add(3);
+    set.add(1);
+    set.add(2);
+    System.out.println(set); // [1, 2, 3]
+    set.remove(2);
+    System.out.println(set); // [1, 3]
+    System.out.println(set.contains(3)); // true
+  }
+}
+
+
+LinkedHashSet: a hash table-based implementation that maintains the order of elements in which they were inserted. It offers fast add, remove, and contains operations with average time complexity O(1).
+
+import java.util.LinkedHashSet;
+
+public class Main {
+  public static void main(String[] args) {
+    LinkedHashSet<Integer> set = new LinkedHashSet<>();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+    System.out.println(set); // [1, 2, 3]
+    set.remove(2);
+    System.out.println(set); // [1, 3]
+    System.out.println(set.contains(3)); // true
+  }
+}
+
+
+Here is a brief comparison of the three main Set implementations in Java:
+
+HashSet:
+
+Does not maintain the order of elements.
+Offers fast add, remove, and contains operations with average time complexity O(1).
+Implemented as a hash table.
+
+
+TreeSet:
+
+Maintains the order of elements in sorted order.
+Offers fast add, remove, and contains operations with average time complexity O(log n).
+Implemented as a tree data structure.
+
+
+LinkedHashSet:
+
+Maintains the order of elements in which they were inserted.
+Offers fast add, remove, and contains operations with average time complexity O(1).
+Implemented as a hash table with doubly-linked list.
+
+In general, you would choose a HashSet if you don't care about the order of elements, but you need fast add, remove, and contains operations. You would choose a TreeSet if you need to maintain the order of elements in sorted order, but you are okay with slightly slower add, remove, and contains operations. You would choose a LinkedHashSet if you need to maintain the order of elements in the order in which they were inserted, and you need fast add, remove, and contains operations.
+
+
+note:
+The order of elements in a LinkedHashSet can be useful in certain situations where the order of elements is important. Here are a few examples:
+
+Cache implementation: The order of elements in a LinkedHashSet can be used to implement a cache that removes the least recently used (LRU) items first. By adding new elements to the end of the linked list, and removing the least recently used elements from the beginning, the cache can be kept to a maximum size.
+
+Preserving the order of elements in a sequence: If you need to maintain the order of elements in a sequence, such as in a history list or a list of recently visited pages, a LinkedHashSet can be used to store the elements in the order in which they were added.
+
+Debugging and testing: If you need to inspect the order of elements in a collection, a LinkedHashSet can be useful. The order of elements in a LinkedHashSet provides a clear picture of the order in which elements were added to the set.
+
+Overall, the order of elements in a LinkedHashSet can be useful in situations where the order of elements is important and you need to maintain the order of elements in the order in which they were added
+
+---------------------------------------------------------------------------------------------------------------
+HashTable
+
+its a class it implements map interface
+hashtable is an associate array where in the values are stored as keyvalue pair.use Hashing/hasing funtion to define the
+index of the keyvalue value pair.
+its synchronised.to avoid collision in hastable we can use list.it will stored value with same value.allow duplocate value  not suport null value
+
+In Java, hash tables are implemented using the java.util.HashMap class. The HashMap class uses a hash table internally to store key-value pairs.
+
+Here's a high-level overview of how it works:
+
+The hash function is used to map the key to an array index.
+The key-value pair is stored at the calculated index in the array.
+When retrieving a value for a key, the hash function is used to calculate the index again, and the corresponding value is returned.
+To handle collisions (when multiple keys map to the same index), HashMap uses a technique called separate chaining, where each index in the array is linked to a linked list of key-value pairs.
+
+The size of the array used by the hash table is determined by the initial capacity and the load factor. The load factor determines the maximum allowed ratio of stored key-value pairs to the size of the array. When the load factor exceeds a certain threshold, the hash table is automatically resized to accommodate more key-value pairs.
+
+1.synchronised
+2.it does not allow null key or null value.
+
+How its works internally
+
+when we store ht.put("naveen",200); initially memorry will spilit into 11 segment which means 11 indexes 
+hash("naveen") -> hascode % 11 = 4 so this will stored in 4 th index
+hash("rahul") -> hascode % 11 = 6 so this will stored in 6 th index
+hash("praveen") -> hascode % 11 = 4 so this will stored in 4 th index but collision happened it will create node under same 4th index and store again any hash code has 4 as value it will create one more node under praveen node and store(link list)
+
+And for getting ht.get("naveen")  hash("naveen") -> hascode % 11 = 4 . so in 4 th index we have other node also so next it will compare the naveen hashcode with help of equals method and return 200
+
+we can use debugger mode to check whether it create 11 segment and where its store
+
+import java.util.Hashtable;
+
+public class HashtableExample {
+  public static void main(String[] args) {
+    // Creating a Hashtable
+    Hashtable<String, Integer> hashtable = new Hashtable<>();
+
+    // Adding Key-Value pairs to a Hashtable
+    hashtable.put("Key1", 1);
+    hashtable.put("Key2", 2);
+    hashtable.put("Key3", 3);
+
+    // Retrieving a value using a key
+    int value = hashtable.get("Key2");
+    System.out.println("Value for key 'Key2': " + value);
+  }
+}
+
+note;
+package practiseJavaProb;
+
+import java.util.HashMap;
+import java.util.Hashtable;
+
+
+
+public class Main {
+  public static void main(String[] args) {
+    // Creating a HashMap
+	  Hashtable<String, Integer> map = new Hashtable<>();
+
+    // Adding Key-Value pairs to a HashMap
+    map.put("Key1", 1);
+    map.put("Key2", 3);
+    map.put(null, null);
+
+    // Retrieving a value using a key
+    int value = map.get("key2");
+    System.out.println("Value for key 'Key2': " + value);
+  }
+}
+throw error
+
+The code you posted throws a NullPointerException because you're trying to insert a null key into a Hashtable, which is not allowed. According to the Java documentation, Hashtable does not allow null keys or values. If you try to insert a null key or value, a NullPointerException will be thrown.
+
+To avoid the exception, you can simply remove the line where you're trying to insert the null key:
+
+Hashtable<String, Integer> map = new Hashtable<>();
+
+// Adding Key-Value pairs to a HashMap
+map.put("Key1", 1);
+map.put("Key2", 3);
+
+// Retrieving a value using a key
+int value = map.get("Key2");
+System.out.println("Value for key 'Key2': " + value);
+
+-----------------------------------------------------------------------------------
+
+HashMap
+its uses hastable internally.it store  the value as the keyvalue pair.using hasing technique and 
+inject the data into data base its also internally uses hastable to store the value as keyvalue pair its not synchronised.Can store
+duplicate value not key.we use put method to insertion
+HashMap allows only one null Key and lots of null values.
+unique key
+
+HashMap is a class in Java that implements the Map interface. It stores key-value pairs and provides constant-time O(1) complexity for the basic operations, such as get and put.
+
+A HashMap is a dynamic data structure that automatically increases its size as the number of elements stored in it grows. It uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found.
+
+when we store ht.put("naveen",200); initially memorry will spilit into 16 segment which means 16 indexes 
+hash("naveen") -> hascode % 11 = 4 so this will stored in 4 th index
+hash("rahul") -> hascode % 11 = 6 so this will stored in 6 th index
+hash("praveen") -> hascode % 11 = 4 so this will stored in 4 th index but collision happened it will create node under same 4th index and store again any hash code has 4 as value it will create one more node under praveen node and store(link list)
+
+And for getting ht.get("naveen")  hash("naveen") -> hascode % 11 = 4 . so in 4 th index we have other node also so next it will compare the naveen hashcode with help of equals method and return 200
+
+we can use debugger mode to check whether it create 11 segment and where its store
+
+import java.util.HashMap;
+
+public class HashMapExample {
+  public static void main(String[] args) {
+    // Creating a HashMap
+    HashMap<String, Integer> map = new HashMap<>();
+
+    // Adding Key-Value pairs to a HashMap
+    map.put("Key1", 1);
+    map.put("Key2", 2);
+    map.put("Key3", 3);
+
+    // Retrieving a value using a key
+    int value = map.get("Key2");
+    System.out.println("Value for key 'Key2': " + value);
+  }
+}
+
+note
+public class Main {
+  public static void main(String[] args) {
+    // Creating a HashMap
+    HashMap<String, Integer> map = new HashMap<>();
+
+    // Adding Key-Value pairs to a HashMap
+    map.put("Key1", 1);
+    map.put("Key2", 3);
+    map.put(null, null);
+
+    // Retrieving a value using a key
+    int value = map.get(null);
+    System.out.println("Value for key 'Key2': " + value);
+  }
+}
+
+throw error
+
+The code you posted throws a NullPointerException because you're trying to retrieve the value associated with a null key, which is not allowed in a HashMap. According to the Java documentation, null is allowed as a key or value in a HashMap, but it's important to handle them properly to avoid NullPointerExceptions.
+
+In this case, you can use a null check to ensure that the value you're trying to retrieve is not null:
+
+int value = map.get(null);
+if (value != null) {
+  System.out.println("Value for key 'null': " + value);
+} else {
+  System.out.println("Value for key 'null' not found.");
+}
+
+=================================================================================================================================================
+9.Big O Notation
+
+The big O notation is used to describe the time complexity of an algorithm, which is the amount of time it takes for the algorithm to complete as a function of the size of the input.
+
+The big O notation describes the upper bound on the growth rate of the running time of an algorithm, so it's an approximation of the worst-case time complexity. The big O notation uses the symbol O(f(n)), where f(n) is a function that describes the growth rate of the running time as a function of the size of the input n.
+
+Here are some common time complexities expressed using big O notation:
+
+O(1) - Constant time: The running time of the algorithm is independent of the size of the input.
+
+O(log n) - Logarithmic time: The running time of the algorithm increases logarithmically with the size of the input.
+
+O(n) - Linear time: The running time of the algorithm increases linearly with the size of the input.
+
+O(n log n) - Log-linear time: The running time of the algorithm increases as the size of the input times the logarithm of the size of the input.
+
+O(n^2) - Quadratic time: The running time of the algorithm increases as the square of the size of the input.
+
+O(2^n) - Exponential time: The running time of the algorithm grows exponentially with the size of the input.
+
+It's important to note that the big O notation is an upper bound, so the actual running time of an algorithm might be faster than the time complexity expressed using big O notation. However, the big O notation provides a useful approximation of the worst-case time complexity, and it's a common way to compare the relative efficiencies of different algorithms.
+
+=================================================================================================================================================
+
+
+
