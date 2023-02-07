@@ -1081,6 +1081,1132 @@ O(2^n) - Exponential time: The running time of the algorithm grows exponentially
 It's important to note that the big O notation is an upper bound, so the actual running time of an algorithm might be faster than the time complexity expressed using big O notation. However, the big O notation provides a useful approximation of the worst-case time complexity, and it's a common way to compare the relative efficiencies of different algorithms.
 
 =================================================================================================================================================
+10.
+Regular expression
+
+A regular expression in Java is a sequence of characters that defines a search pattern. It's a way of matching text in a more flexible and concise manner, as compared to using string methods such as indexOf() and matches(). Regular expressions are used in Java through the java.util.regex package and its classes such as Pattern and Matcher. They can be used to search, edit, and manipulate strings, validate input, and more.
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+  public static void main(String[] args) {
+    String text = "Hello, world!";
+    String pattern = "world";
+
+    // Compile the regular expression pattern
+    Pattern p = Pattern.compile(pattern);
+
+    // Get a Matcher object
+    Matcher m = p.matcher(text);
+
+    // Check if the pattern is found in the text
+    if (m.find()) {
+      System.out.println("Found pattern in the text");
+    } else {
+      System.out.println("Pattern not found in the text");
+    }
+  }
+}
+
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+  public static void main(String[] args) {
+    String email = "example@domain.com";
+    String pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+
+    // Compile the regular expression pattern
+    Pattern p = Pattern.compile(pattern);
+
+    // Get a Matcher object
+    Matcher m = p.matcher(email);
+
+    // Check if the email address is valid
+    if (m.matches()) {
+      System.out.println("Valid email address");
+    } else {
+      System.out.println("Invalid email address");
+    }
+  }
+}
+
+In this example, the regular expression "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$" is used to validate the email address. The output of the program will be "Valid email address". Note that this is just a simple example and there are more advanced regular expressions for email validation.
+
+
+==========================================================================================================================================
+11.
+
+Cloning --->
+
+the process of creating replica of perticular obj by copying one object completly into another object.
+we have to implement clonable interface. If we do not implement Cloneable interface, clone() method generates CloneNotSupportedException.
+if we need to use many object having the same data, then don't create objects using new keyword. use clone method to create that object,
+because operation of creating object with clone method is faster than using new keyword
+
+Cloning in Java refers to creating a copy of an object. There are two ways to achieve this in Java: shallow cloning and deep cloning.
+
+Shallow cloning creates a new instance of an object, but it only copies its reference to the object's attributes, rather than copying the attributes themselves. This means that the original object and its clone will share the same attributes.
+
+Here is an example of shallow cloning in Java:
+
+class MyClass implements Cloneable {
+  int x;
+
+  public Object clone() throws CloneNotSupportedException {
+    return super.clone();
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    MyClass obj1 = new MyClass();
+    obj1.x = 5;
+
+    try {
+      MyClass obj2 = (MyClass) obj1.clone();
+      System.out.println("obj2.x = " + obj2.x);
+    } catch (CloneNotSupportedException e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+
+In this example, the MyClass class implements the Cloneable interface, which allows it to be cloned. The clone() method is then overridden to return a shallow copy of the object.
+
+Deep cloning, on the other hand, creates a new instance of an object and also creates new instances of all its attributes. The original object and its clone are completely independent of each other.
+
+Here is an example of deep cloning in Java:
+
+class MyClass implements Cloneable {
+  int x;
+
+  public Object clone() throws CloneNotSupportedException {
+    MyClass clone = (MyClass) super.clone();
+    clone.x = this.x;
+    return clone;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    MyClass obj1 = new MyClass();
+    obj1.x = 5;
+
+    try {
+      MyClass obj2 = (MyClass) obj1.clone();
+      System.out.println("obj2.x = " + obj2.x);
+    } catch (CloneNotSupportedException e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+
+In this example, the clone() method is overridden to create a deep copy of the object, by also creating a new instance of the x attribute. The output of the program will be "obj2.x = 5".
+
+
+Cloning can be useful in a number of scenarios in Java programming. Here are a few examples:
+
+Creating independent copies: Cloning can be used to create independent copies of an object, which can be modified without affecting the original object.
+
+Improving performance: Cloning can be used to improve the performance of a program, by creating a new instance of an object that has already been constructed, rather than constructing a new object from scratch.
+
+Object pooling: Cloning can be used in object pooling, where a pool of objects is created and objects are borrowed from the pool, used, and then returned. Cloning can be used to create new instances of objects in the pool, without having to construct them from scratch.
+
+Testing: Cloning can be used in testing, where a test case needs to modify an object without affecting other test cases. By creating a clone of the object, the original object can be preserved for other test cases, while the clone can be modified for the current test case.
+
+Implementing prototypes: Cloning can be used to implement the prototype pattern, where an existing object is cloned to create a new instance, which can then be modified as needed. This can be a more efficient way to create objects, compared to constructing objects from scratch.
+
+
+================================================================================================================================
+12.
+
+Tokenizer
+
+A tokenizer in Java is a utility class that is used to split a string into smaller units called tokens. Tokens are usually defined as sequences of characters separated by a delimiter, such as a space, a comma, or a tab.
+
+Tokenizers are useful in a variety of scenarios, such as:
+
+Parsing strings: Tokenizers can be used to parse strings that contain structured data, such as CSV files, log files, or configuration files.
+
+Processing command-line arguments: Tokenizers can be used to process command-line arguments passed to a program.
+
+Text processing: Tokenizers can be used to split text into words, sentences, or paragraphs, which can then be processed further.
+
+import java.util.StringTokenizer;
+
+public class Main {
+  public static void main(String[] args) {
+    String str = "This is a string";
+    StringTokenizer tokenizer = new StringTokenizer(str);
+
+    while (tokenizer.hasMoreTokens()) {
+      System.out.println(tokenizer.nextToken());
+    }
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    String str = "This is a string";
+    String[] tokens = str.split(" ");
+
+    for (String token : tokens) {
+      System.out.println(token);
+    }
+  }
+}
+
+Note that the StringTokenizer class is considered to be outdated, and it is recommended to use the split() method of the String class or regular expressions instead
+
+
+================================================================================================================================
+13.
+
+Enum
+
+The Enum in Java is a data type which contains a fixed set of constants.naming conventions should have all constants in capital 
+letters.Enums are used to create our own data type.for instance we can create enum for month.
+Java Enum internally inherits the Enum class, so it cannot inherit any other class, but it can implement many interfaces.
+We can have fields, constructors, methods, and main methods in Java enum.we use enum keyword.
+
+public enum Days {
+  MONDAY,
+  TUESDAY,
+  WEDNESDAY,
+  THURSDAY,
+  FRIDAY,
+  SATURDAY,
+  SUNDAY
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Days day = Days.FRIDAY;
+    System.out.println("Today is " + day);
+  }
+}
+
+================================================================================================================================
+14.
+
+Wrapper class
+
+In Java, a wrapper class is a class that wraps (or encases) a primitive data type, converting it to an object. The eight primitive data types in Java (boolean, byte, char, short, int, long, float, and double) are not objects, so they cannot be manipulated as objects. Wrapper classes allow you to work with primitive data types as objects, giving you more flexibility when working with them.
+
+Here's an example of using a wrapper class:
+public class Main {
+  public static void main(String[] args) {
+    int primitiveInt = 42;
+    Integer wrapperInt = Integer.valueOf(primitiveInt);
+
+    System.out.println("Primitive int: " + primitiveInt);
+    System.out.println("Wrapper int: " + wrapperInt);
+  }
+}
+
+In this example, we've created a primitive integer with the value 42 and a Integer wrapper object with the value of that primitive integer. The output of this program would be:
+
+Here are some examples of when wrapper classes are needed:
+
+When you need to pass a primitive data type to a method that takes an object as a parameter: Since primitive data types are not objects, you cannot pass them directly to methods that take objects as parameters. By wrapping a primitive data type in a wrapper class, you can pass the object to the method instead.
+
+When you need to store primitive data types in a data structure that only stores objects: Data structures such as lists and maps can only store objects, not primitive data types. By wrapping a primitive data type in a wrapper class, you can store it in a data structure that only stores objects.
+
+When you need to manipulate primitive data types as objects: Wrapper classes provide methods that you can use to manipulate primitive data types, such as converting them to strings or comparing them to other objects.
+
+These are just a few examples of when wrapper classes are needed in Java. By wrapping primitive data types in wrapper classes, you can use the full power of the object-oriented features of the Java language to manipulate and work with primitive data types.
+
+Java collection framework, like List or Set, is designed to work with objects, not primitive data types. Wrapper classes, such as Integer, Double, etc., are used to represent the corresponding primitive data types as objects. This allows the collections to store objects instead of just primitive types, making it more versatile and flexible. Additionally, the use of wrapper classes provides an easy way to use the collection's built-in methods and functions, such as sorting, searching, etc. In short, wrapper classes are used in collections to maintain consistency and provide functionality that is not available with primitive data types.
+
+
+================================================================================================================================
+15.
+
+Finalize
+
+finalise is the method present inside object class.
+garbage collector call  finalise method to clean up activities before obj is destroyed. its a automatic process.every time we run
+a program jvm do it.
+
+The finalize() method in Java is a method defined in the Object class. It is called by the garbage collector when it determines that an object is no longer reachable, allowing the object to perform any cleanup necessary before it is destroyed. The finalize() method has the following signature:
 
 
 
+protected void finalize() throws Throwable 
+It's important to note that the finalize() method is not guaranteed to be called, and even if it is called, it's not guaranteed to be called in a timely manner. Additionally, the finalize() method should not be used as a substitute for proper resource management. Instead, resources should be explicitly closed when they are no longer needed.
+
+In practice, the use of the finalize() method is discouraged in favor of other resource management techniques, such as the try-finally block or the try-with-resources statement, both of which offer more predictable and reliable resource management.
+
+
+================================================================================================================================
+16.
+
+multi Thread in Java
+
+A multi-threaded program in Java is a program that has multiple threads of execution, each running in parallel and performing a different task. This allows a program to perform multiple tasks concurrently, improving its efficiency and responsiveness.
+
+Here's a simple example that demonstrates how to create a multi-threaded program in Java using the Thread class:
+
+
+
+multitasking done at programming level is called as threads.main purpose of the thread is to improve the perfomence of the application
+and reducing execution time.it should not be  depending on other thread .two way we can buil thread .one is extending the thread second
+implement runnable interface.synchronisation will be followed when thread are operating comman data.sleep method notify method and 
+wait method will be used when one thread depending on other data.
+ex: Railway ticket reservation system where multiple customers accessing the server. 
+main purpose of multithreading is to provide simultaneous execution of two or more parts of a program to maximum utilize the CPU time. ...
+Threads are lightweight sub-processes, they share the common memory space
+
+
+class WorkerThread extends Thread {
+   public void run() {
+      for (int i = 0; i < 10; i++) {
+         System.out.println("Worker thread running: " + i);
+      }
+   }
+}
+
+public class Main {
+   public static void main(String[] args) {
+      WorkerThread worker = new WorkerThread();
+      worker.start();
+
+      for (int i = 0; i < 10; i++) {
+         System.out.println("Main thread running: " + i);
+      }
+   }
+}
+
+In this example, we have a worker thread class, WorkerThread, that extends the Thread class and overrides the run() method. This method is executed when the worker thread is started by calling the start() method.
+
+
+class Worker implements Runnable {
+   public void run() {
+      for (int i = 0; i < 10; i++) {
+         System.out.println("Worker thread running: " + i);
+      }
+   }
+}
+
+public class Main {
+   public static void main(String[] args) {
+      Worker worker = new Worker();
+      Thread workerThread = new Thread(worker);
+      workerThread.start();
+
+      for (int i = 0; i < 10; i++) {
+         System.out.println("Main thread running: " + i);
+      }
+   }
+}
+In this example, we have a worker class, Worker, that implements the Runnable interface and overrides the run() method. The run() method is executed when the worker thread is started.
+is to associate the worker object with the Thread object. The worker object is an instance of a class that implements the Runnable interface and contains the code that should be executed by the thread.
+
+By passing the worker object to the Thread constructor, we tell the Thread object to execute the run() method of the worker object when the thread is started. This allows us to separate the code that defines the behavior of the thread (in the worker object) from the code that controls the thread's execution (in the Thread object).
+
+In the main method, we create an instance of the worker class and then create a Thread object and pass the worker instance to its constructor. Finally, we call the start() method to start the worker thread.
+
+In the same way as the previous example, we have a loop that runs 10 times in the main thread, printing a message to the console.
+
+When this program is executed, the worker thread and the main thread run concurrently, and their output is interleaved in the console. This demonstrates how multiple threads can run concurrently in a Java program using the Runnable interface.
+
+
+The difference between using the Thread class and the Runnable interface in Java for creating multi-threaded programs lies in their design.
+
+The Thread class is a concrete class in Java that extends the Object class and implements the Runnable interface. When you extend the Thread class, you create a new class that is a Thread and must override the run() method to specify the code that the thread should execute.
+
+On the other hand, the Runnable interface is an interface that defines a single run() method. To create a thread using the Runnable interface, you create a class that implements the Runnable interface and overrides the run() method to specify the code that the thread should execute. Then, you create a Thread object and pass an instance of the Runnable class to its constructor.
+
+In terms of functionality, both approaches are equivalent and can be used to create multi-threaded programs in Java. The choice between using the Thread class or the Runnable interface largely depends on personal preference and design considerations. Some developers prefer to extend the Thread class because it provides more control over the thread, while others prefer to use the Runnable interface because it promotes the separation of concerns between the thread's code and the Thread object
+
+--------------------------------------------------------------------------------------------------------------
+Threadlifecycle--->
+new when we create a object for a thread with new key word its goes to new state.whenever we call the start method on the object.its 
+change the state to runnable state.then thread schedular allocate the memmory in cpu to run a thread.in this state thread start 
+execute the thread.when we use wait sleep suspend in thread its go to waiting state then notify notify the main thread then
+main thread kill the wait state state.after all execution done its goes to dead state its single life cycle of thread.
+
+thread synchronisation--->
+when two threads are operating on common data the data might get currupted becouse of multitasking.To make the thread one after
+other we use synchronised keyword to make one thread to wait untill other thread complete the task.for example bank balance 
+data curruption might happen if we not use synchised concept.
+
+
+Thread priority--->
+it decide which thread is going to run first which thread run first and which one is run later.we set the priority then its a request
+made to thread schedular there is no assurity that will be processed and appeal.the minimum thread priority is 1.maximum thread 
+priority is 5 however we can set the thread priority with number anything between 1 to 10.
+
+
+Thread pool--->
+collection of thread at one place called thread pool.by using thread pool we can limit the number thread nunning in the program.
+ its improve the performence of the application every time request come
+its assinged to the thread .once the thread complete the task it will not get destroyed it again use it for other task to execute
+we can use exixting thread instead of creatig new thread.
+================================================================================================================================
+final class 
+
+if we make a class final it cant be extended and some classes erfor standard funtion and they are not meant to be modified .ex string manupulation
+final class Circle {
+  private double radius;
+
+  public Circle(double radius) {
+    this.radius = radius;
+  }
+
+  public double getRadius() {
+    return radius;
+  }
+
+  public double getArea() {
+    return Math.PI * radius * radius;
+  }
+}
+In this example, the Circle class is declared as final, meaning that no other class can inherit from it. This can be useful in situations where you want to prevent others from changing the behavior of your class.
+
+
+
+================================================================================================================================
+
+Mutable and Immutable--->
+
+Objects in Java are either mutable or immutable. it depends on how the object can be created.
+
+to create immutable class create class as final.2 set the values of the properties using constructor 3.make the members//we cant use setter for final
+final.do not use setters and getters method.
+
+An immutable class is a class whose instances cannot be modified once created. Here are some steps to create an immutable class in Java:
+
+Declare the class as final: This ensures that the class cannot be subclassed and its state cannot be altered.
+
+Make all fields private and final: This ensures that the fields cannot be changed once they are set during object construction.
+
+Don't provide setter methods: This means that once an object is created, its state cannot be changed.
+
+Initialize all fields in the constructor: All fields should be initialized in the constructor and not changed later.
+
+Return a new object instead of modifying an existing object: If a method needs to modify an object's state, it should return a new object with the updated state instead of modifying the existing object.
+
+Here's an example of an immutable class in Java:
+
+final class ImmutablePerson {
+  private final String name;
+  private final int age;
+
+  public ImmutablePerson(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+}
+
+String is the immutable class
+Security: Immutable strings are safer to use in multithreaded environments where multiple threads could potentially modify the same string object. When a string is made immutable, it is guaranteed that its value cannot be changed, making it safer to use in concurrent environments.
+
+Performance: Immutable strings are more efficient in terms of memory and performance because they can be shared between multiple objects. When two string objects have the same value, they can refer to the same underlying character array, rather than having separate copies of the same data. This saves memory and improves performance.
+
+Simplicity: Immutable strings are simpler to use because they do not have to be protected from changes. This makes it easier to write and maintain code that uses strings.
+
+Constant pool--->The area where immutable pbjects are present thats called constand pool
+
+
+StringBuffer;
+
+String Concatenation: String concatenation is a common operation in programming, and it's more efficient to concatenate immutable strings than mutable strings. When concatenating strings, a new string object is created, and the characters from the original strings are copied into the new string. With mutable strings, the original strings would have to be changed, which is less efficient.
+
+
+Dynamic String Building: When you need to build up a string dynamically, such as when constructing a SQL query or building a formatted string, StringBuffer can be useful. It allows you to append, insert, delete, and replace characters in the sequence, making it easier to construct strings programmatically.
+
+Performance: StringBuffer is more efficient than string concatenation for constructing strings, especially when building strings in a loop. With StringBuffer, the characters are appended to the buffer, and the buffer is converted to a string only when it's needed.
+
+Thread-Safety: StringBuffer is thread-safe, meaning that multiple threads can safely access the same StringBuffer object. This is important when building strings in a multithreaded environment.
+
+Text Processing: When you need to perform text processing tasks, such as replacing substrings, splitting strings, or converting strings to different formats, StringBuffer can be a useful tool.
+
+String manipulation in Servlets: StringBuffer is often used in Servlets for string manipulation, such as building dynamic HTML pages or constructing URLs.
+
+Here are some common use cases for StringBuilder:
+
+Dynamic String Building: StringBuilder is useful for building up strings dynamically, such as when constructing a SQL query or building a formatted string.
+
+Performance: StringBuilder is more efficient than StringBuffer for single-threaded environments because it does not need to synchronize access to the object.
+
+Text Processing: StringBuilder can be used for text processing tasks, such as replacing substrings, splitting strings, or converting strings to different formats.
+
+String manipulation in non-concurrent Applications: StringBuilder is often used in non-concurrent applications, such as desktop applications or single-threaded servlets, for string manipulation tasks.
+================================================================================================================================
+Throw--->we can create custom exception using throw key word.its throw exception object to catch method.
+throw keyword is used to throw an exception explicitly. It can throw only one exception at a time.
+
+public void divide(int dividend, int divisor) {
+    if (divisor == 0) {
+        throw new ArithmeticException("Cannot divide by zero");
+    }
+    int result = dividend / divisor;
+    System.out.println("Result is: " + result);
+}
+
+
+Thrown--->
+It is used when the function has some statements that can lead to some exceptions.by using throws key keyword in method.
+exception thrown to the method calling statement.In method we have to use try catch.
+but by using thrown in class defining line exception will be handled by the jvm.(jvm called main)
+throws keyword can be used to declare multiple exceptions, separated by comma. Whichever exception occurs, 
+if matched with the declared ones, is thrown automatically then.
+
+public void readFile(String fileName) throws IOException {
+    File file = new File(fileName);
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    String line;
+    while ((line = br.readLine()) != null) {
+        System.out.println(line);
+    }
+}
+
+================================================================================================================================
+
+Finally--->
+finally is associated with try cathch block.any code we written in finally block regardless of exception happen or not
+it will run.its exctence of catch,try.
+
+
+Final--->
+we can use final keyword to class method and variables.//we cant reinitialise the variable again.
+final in  variables -to make variable constand
+final in class- to prevent not to inherit to other
+final in method- to prevetn overriding.
+
+JDBC--->
+To establish connection between javaapp and mysql we need sql driver it has class drivermanager with method get connection
+to create connection.then send a query we need to create statement object.it will send  a query to sqlDb and the query method
+will return Result in Result set obj.we can db operation.
+
+Serialisation--->
+Serialisation is the process of storing object in byte state permanently in the file system.we store  the object we use Fileout
+putstreatm constructor  to access the path of the file and we use objectoutPutStream to send the object to systemfiles.
+
+
+deserialisation--->
+In deserialisation we convert the byte state of object from file and can read that object is called deserialisation
+To do thid we use fileinputstream constructor to access the file and also we use objectInputstream constructor to retrive
+the object and access the file then by using readobject() method it will return the obj by reading that byte formate
+Aa2=(A) ois.readobject().we typecast to store the object in perticular class.
+
+
+Serialization and deserialization are mechanisms in Java that allow objects to be written to and read from a stream. Serialization is the process of converting an object's state to a stream of bytes, while deserialization is the process of creating an object from a stream of bytes.
+
+The Java Serialization API provides a standard mechanism for converting objects to and from a stream of bytes. To make an object serializable, it must implement the java.io.Serializable interface. Once an object is serializable, it can be written to a stream using an ObjectOutputStream and read from a stream using an ObjectInputStream.
+
+Here is an example of how serialization and deserialization can be used in Java:
+
+public static void main(String[] args) {
+    Employee employee = new Employee("John Doe", 35, 10000);
+
+    // Serialization
+    try (FileOutputStream fos = new FileOutputStream("employee.ser");
+         ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        oos.writeObject(employee);
+    } catch (IOException ex) {
+        System.out.println("An error occurred while serializing the object: " + ex.getMessage());
+    }
+
+    // Deserialization
+    try (FileInputStream fis = new FileInputStream("employee.ser");
+         ObjectInputStream ois = new ObjectInputStream(fis)) {
+        Employee deserializedEmployee = (Employee) ois.readObject();
+        System.out.println("Deserialized Employee: " + deserializedEmployee);
+    } catch (IOException | ClassNotFoundException ex) {
+        System.out.println("An error occurred while deserializing the object: " + ex.getMessage());
+    }
+}
+
+
+In this example, an Employee object is created and then serialized to a file named employee.ser using an ObjectOutputStream. The Employee class must implement the Serializable interface to be serializable.
+
+The Employee object can then be deserialized from the file using an ObjectInputStream and cast to an Employee object. The deserialized object can be used just like any other object in the program.
+
+Note that the try-with-resources statement is used in this example to ensure that the streams are properly closed even if an exception is thrown during the serialization or deserialization process.
+================================================================================================================================
+
+
+Fileconcept--->The File class have several methods for working with directories and files such as creating new directories or files, deleting and renaming directories or files, listing the contents of a directory etc.
+
+
+
+using file class constructor  we can check the file is present or not using f.exit method.it will return boolean value
+delete() method is used for delete the file that present in the path and return boolean value
+File file = new File("newfile.txt");
+if (file.delete()) {
+  System.out.println("File deleted: " + file.getName());
+} else {
+  System.out.println("Failed to delete file: " + file.getName());
+}
+
+create() we can create the file in the given path.
+File file = new File("newfile.txt");
+try {
+  file.createNewFile();
+  System.out.println("File created: " + file.getName());
+} catch (IOException ex) {
+  System.out.println("An error occurred while creating the file: " + ex.getMessage());
+}
+
+Rename file
+File oldFile = new File("oldfile.txt");
+File newFile = new File("newfile.txt");
+if (oldFile.renameTo(newFile)) {
+  System.out.println("File renamed from " + oldFile.getName() + " to " + newFile.getName());
+} else {
+  System.out.println("Failed to rename file " + oldFile.getName());
+}
+
+File exists
+File file = new File("newfile.txt");
+if (file.exists()) {
+  System.out.println("File exists: " + file.getName());
+} else {
+  System.out.println("File does not exist: " + file.getName());
+}
+
+
+
+mkdir() will create folder in path and return boolean value .
+File directory = new File("newdirectory");
+if (directory.mkdir()) {
+  System.out.println("Directory created: " + directory.getName());
+} else {
+  System.out.println("Failed to create directory: " + directory.getName());
+}
+
+
+import java.io.File;
+
+public class Main {
+  public static void main(String[] args) {
+    String path = "/path/to/directory";
+    File directory = new File(path);
+    boolean success = directory.mkdir();
+
+    if (success) {
+      System.out.println("Directory created successfully");
+    } else {
+      System.out.println("Directory creation failed");
+    }
+  }
+}
+
+
+
+list() it wiill return all folder in given path.
+import java.io.File;
+
+public class Main {
+  public static void main(String[] args) {
+    String path = "/path/to/directory";
+    File directory = new File(path);
+
+    File[] subdirectories = directory.listFiles(File::isDirectory);
+    for (File subdirectory : subdirectories) {
+      System.out.println(subdirectory.getName());
+    }
+  }
+}
+In this example, the listFiles(File::isDirectory) method is used to only get the subdirectories. The File::isDirectory is a method reference that returns true if a File object represents a directory, and false otherwise.
+
+
+
+fileReader class is used read the file in given path by useing read() and this method will return single char onlu
+creating a for loop we can read the file.
+File file = new File("newfile.txt");
+try (FileReader reader = new FileReader(file)) {
+  int data = reader.read();
+  while (data != -1) {
+    System.out.print((char) data);
+    data = reader.read();
+  }
+  System.out.println("\nData read from file: " + file.getName());
+} catch (IOException ex) {
+  System.out.println("An error occurred while reading from the file: " + ex.getMessage());
+}
+
+
+filewriter class used to write the content in given path by using write mehtod.flush() give assurity that no bug
+will happen in while writing the content. it means to clear the stream of any element that may be or maybe not inside the stream.
+File file = new File("newfile.txt");
+try (FileWriter writer = new FileWriter(file)) {
+  writer.write("Hello, World!");
+  System.out.println("Data written to file: " + file.getName());
+} catch (IOException ex) {
+  System.out.println("An error occurred while writing to the file: " + ex.getMessage());
+}
+================================================================================================================================
+
+
+bubble sort---> bubble sort is an algorithm that sort the values by comparing adjucent elements and swapping them
+if they appear in wrong order.for example if the array has 5 elements we have to iterate  5 times.in fisrt iteration we
+have to compare every element.so first iteration itsself max or min value sort to the end or firstindex
+ then second iteration we dont need to compare all element. we can leavve last or first index so next we need to
+ compare 4 times so like that untill we reach every item in list order correctly.
+
+
+ Array--->Java array is an object 
+ An array is a collection of items stored at contiguous memory locations.
+ This makes it easier to calculate the position of each element by simply adding an offset to a base value(index).
+ You can’t change the size once you have declared the array you can’t change its size because of static memory allocation.
+ in single array we can store only same type data .
+ Arrays allow random access to elements. 
+ This makes accessing elements by position faster.
+ Used to Implement other data structures like Stacks, Queues, Heaps, Hash tables.
+difference between the two indexes is the offset.
+
+
+
+2d array--->
+2D array can be defined as an array of arrays.represented as the collection of rows and columns
+The syntax of declaring two dimensional array is very much similar to that of a one dimensional array.
+same application as arry but we have to use column no and index no to access.
+2D Arrays are used to implement matrices
+int[][] twoDArray = new int[3][3];
+int[][] twoDArray = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+int value = twoDArray[1][2]; // value = 6
+public class Main {
+  public static void main(String[] args) {
+    int[][] twoDArray = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
+    for (int i = 0; i < twoDArray.length; i++) {
+      for (int j = 0; j < twoDArray[i].length; j++) {
+        System.out.print(twoDArray[i][j] + " ");
+      }
+      System.out.println();
+    }
+  }
+}
+
+
+
+
+Throwable--->
+throwable is the super most class of all errors and exception in java.only object are thrown by jvm.
+Throwable class is the root class of Java Exception Heirarchy and is inherited by two subclasses:
+1.Exception
+2.Error
+Throwable contains a snapshot of the execution stack of its thread at the time it was created.
+ It can also contain a message string that gives more information about the error. 
+ It can also suppress other throwables from being propagated.
+
+
+ Error--->
+indicates the problem that mainly occurs due to the lack of system resourses
+There are three kinds of errors: syntax errors, runtime errors, and logic errors. Syntax errors.
+ These are errors where the compiler finds something wrong with your program
+
+exception--->
+Java provides a mechanism to handle exceptions, so that the program can continue running after an exception is caught, instead of abruptly halting
+exception are unexcepted event that hault programs executio aprubtly.exception is cause when bad user input given
+to handle exception we can use try catch block.
+
+Here is a list of common runtime exceptions in Java:
+
+ArithmeticException: Occurs when an exceptional arithmetic condition has occurred, such as division by zero.
+
+ArrayIndexOutOfBoundsException: Occurs when an array has been accessed with an index that is outside its bounds.
+
+NullPointerException: Occurs when an application attempts to use null in a case where an object is required.
+
+IllegalArgumentException: Occurs when a method has been passed an illegal or inappropriate argument.
+
+ClassCastException: Occurs when an attempt is made to cast an object to a subclass of which it is not an instance.
+
+NumberFormatException: Occurs when a string cannot be parsed as a number.
+
+IllegalStateException: Occurs when an application tries to perform an operation that is illegal or inappropriate for the current state of an object.
+
+And here is a list of common checked exceptions in Java:
+
+IOException: Occurs when an I/O error occurs.
+
+SQLException: Occurs when an error occurs in a database-related operation.
+
+FileNotFoundException: Occurs when a file cannot be found.
+
+ClassNotFoundException: Occurs when a class cannot be found during loading.
+
+InterruptedException: Occurs when a thread is interrupted while it is waiting, sleeping, or otherwise occupied.
+
+NoSuchMethodException: Occurs when a particular method cannot be found.
+
+NoSuchFieldException: Occurs when a particular field cannot be found.
+
+
+ScannerClass--->
+Scannerclass is used to take user input in java.its connect eith keyinput.
+it present in java util package.we can obtain only
+obtaining the input of the primitive types like int, double, etc. and strings.
+ create an object of the Scanner class and use any of the available methods found in the Scanner class documentation.
+
+
+AbstractClass--->
+abstract class can consist of both comlete and incomplete method. to create abstract method abstract keyword is 
+mandatory.we can done partial implimentation
+we can create static and non static variable but non static variables are cannot be accessed.
+cannot create object for abstract class.(we can create object in other class that inherit the absclass then we can use)
+Abstraction is a process of hiding the data implementation details, and showing only functionality to the user. 
+not 100% abstraction.
+//hiding implement mean people can only see what is the method like interface(like steering of car we cant see internal work)
+ but they cant see the implement that we did in class
+its opt for interface too they only see what all method there but they cant see what is the logic that write inside the
+class//
+
+Interface--->
+An interface can consist of only incomplete method only.its optional to use abstract key word to create method
+it will automatically consider as a abstract only.incomplete method should be completed otherwise its throw an error.
+we can create varibles in interface that all are final and
+static. Java doesn’t support multiple inheritance, using interfaces you can achieve multiple inheritance
+ One of the uses of the interface is to provide communication. 
+Through interface you can specify how you want the methods and fields of a particular type
+100% abstraction.
+
+note ;
+The choice between using an abstract class or an interface in Java depends on the specific requirements of your project. Here are some common scenarios where you might choose to use an abstract class or an interface:
+
+Abstract Class:
+
+When you want to provide a partial implementation: If you want to provide a default implementation for some or all of the methods that must be implemented by subclasses, an abstract class can be a good choice. For example, you might have an abstract class that provides a default implementation for a set of common methods, and then have several subclasses that override those methods as needed.
+
+When you want to enforce a common behavior: If you want to enforce a common behavior for a set of related classes, you can use an abstract class to define a set of methods that must be implemented in a certain way. For example, you might have an abstract class that defines a set of methods for a database connection, and then have several subclasses that implement those methods for different databases.
+
+Interface:
+
+When you want to define a common interface: If you want to define a common interface for a group of related classes, regardless of their implementation details, an interface can be a good choice. For example, you might have an interface that defines the behavior of a vehicle, and then have several classes that implement that interface for different types of vehicles.
+
+When you want to allow multiple inheritance: If you want to allow a class to inherit behavior from multiple sources, you can use an interface. For example, you might have an interface that defines the behavior of a musical instrument, and then have several classes that implement that interface for different types of musical instruments.
+
+When you want to provide a decoupled implementation: If you want to provide a decoupled implementation for a set of related classes, an interface can be a good choice. For example, you might have an interface that defines the behavior of a payment gateway, and then have several classes that implement that interface for different payment gateways.
+
+In conclusion, the choice between using an abstract class or an interface depends on the specific requirements of your project. Both abstract classes and interfaces have their own uses, and can be used together to provide a flexible and decoupled implementation for a set of related classes.
+
+Encapsulation--->
+Binding the data by using mehtod.we use setter and getters method to intialise the data.we make the
+variable private . so can avoid the direct access of the data.we can improve the security to the programe.
+only using setter and getter method we can change value of variable.setter method would set the value and get 
+method return the value that set by the setter.
+
+
+inheritance--->
+By using inheritance we inherit the members of one class to another class.we can use that method in inherited
+class.we dont need to write same code for again and again.intention of reuse the member.java doesnt support multiple 
+inheritance.
+
+polymorphism--->
+develop a feature that take more than one form that is called polymorphism.there is two way can perform
+polymorphism.overriding and overloading .
+in overloading we inherit the method and modify the logiic of the mehtod in the childclass with a same name.
+we can check whether overideing happen or not by using by using override annotation.
+overloading - creating mehtod more than one method with the same name with different number of arguments or different
+type of arguments.
+
+
+
+//disadvange of static method Members are part of class and thus
+ remain in memory till application terminates.and can't be ever garbage collected. 
+ Using excess of static members sometime predicts that you fail to design your product and trying to cop of with static /procedural programming. 
+It denotes that object oriented design is compromised.This can result in memory over flow.cant overide it completly get changed.
+while clearing object non static method also get terminated by gc.
+
+
+Superkeyword--->
+using Superkeyword we can access member of parent class.
+using Superkeyword we can access static and  non static member both
+super keyword cannot be used inside static context.using Superkeyword we can call constructor of parant class 
+but calling should be from a child class constructor and also should be very first statement.even if we not use
+Superkeyword compiler will automatically place the Superkeyword.it only call no arg constructor of parent class.
+
+
+IIB(Instance initalation block)--->
+iib's executed when object are created number of  time we create an object same number of time iib will called.
+iib's are used to initalise all instance variable in once give better readability of the code.we can initalise 
+static and non static varible inside iib.
+class Circle {
+    private double radius;
+    
+    {
+        System.out.println("Instance initializer block is called.");
+    }
+    
+    public Circle(double radius) {
+        this.radius = radius;
+        System.out.println("Constructor is called.");
+    }
+
+
+SIB(static initalisation block)--->
+Sib runs before main method runs it doesnt required any invoking statement.
+class MathConstants {
+    static final double PI = 3.14159265358979323846;
+    
+    static {
+        System.out.println("MathConstants class is loaded.");
+    }
+}
+
+postIncrement --->
+increment the value by one when next time ahead when see the variable again
+
+
+preincrement--->
+increment the value at the moment we use.
+
+
+================================================================================================================================
+funtional interface--->
+interface consist of only only incomplere method in it .
+
+
+marker interface---->
+empty interface called marker  interface.Marker interface is a total blank interface that has no body/data-members/implementation.
+A class implements marker interface when required, it is just to "mark"; means it tells the JVM that the particular class is for the purpose of cloning so allow it to clone. This particular class is to Serialize its objects so please allow its objects to get serialized.
+
+
+feature of java 1.8v--->
+Lambda expressions,Static  methods in interface,default keyword we can create complete method in 
+interface,Functional Interface,ForEach() method,data and time api(joda api),stream api.
+
+
+
+    default methods made possible the functional programming concept. in future  if we want to add funtionality to the all the classes we can write the code in it 
+so it doestnt required lot of testing .
+    Also adding an method in interface will not made it compulsory for all the classes implementing an interface. Simplified the coding practise
+Before Java 8, interfaces could have only abstract methods. The implementation of these methods has to be provided in a separate class. So, if a new method is to be added in an interface, then its implementation code has to be provided in the class implementing the same interface. To overcome this issue, Java 8 has introduced the concept of default methods which allow the interfaces to have methods with implementation without affecting the classes that implement the interface.
+
+
+this style of programming is to make code more concise, less complex, more predictable, and easier to test compared to the legacy style of coding. Functional programming deals with certain key concepts such as pure function, immutable state,
+
+
+
+
+need objective of java8--->
+simplify the programe(less no of code consise and clean code and more maintanable code)
+parrellel processosing to compatable with hardwares like multicore processors
+get the benifits of funtional programming
+
+================================================================================================================================
+Typecasting--->
+autoupcasting - converting smaller data type to bigger datatype.int to  long
+during upcasting data loss might happen hence the programe throw an error
+ex float to long .
+
+explicit downcaste-convert bigger datatype into smaller datatype.during explicit downcasting there are chances that 
+data lose might happening. 
+
+class upcasting-child objects address is stored in parent referece variable as shown in example //upcasting is the type casting
+Aa1=new B();
+
+clas downcasting parent class object address stored in child class 
+B b=(B) new A();
+================================================================================================================================
+Access specifier--->
+private default protected public
+if member private only access in same class,if member default access canbe only same class same package,
+if member protected only access same class same package different package by inheriting,if it is public 
+we can access any class any package.
+class access specifiere; if class default cannot be accesd in diff package,id class public access any where in project,
+class cannot be private and protected
+constructor access specifiers;
+if cons private creating object cant be in another class,if constructor default creeating it object cannot be done in another
+package,if protected object creation cannot be done in another package default and protected are same
+if public we can execute anywhere in project.
+
+================================================================================================================================
+Data hiding
+
+if variable made private so that it cannot be accessed in different class that is called data hiding.
+Data hiding in Java is a mechanism for protecting the internal state of an object from unauthorized access or modification. It is achieved through the use of access modifiers, such as private, protected, and public.
+class Person {
+    private String name;
+    private int age;
+    
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+}
+
+================================================================================================================================
+
+this keyword--->
+this key word is the special reference variable that hold object address.this keyword cannot be used in side static method
+using this key we can access both static and non static context member of class,if we not use this keyword to use 
+nonstatic member then automatically this keyword is append by the compiler as shown in the below ex.but this
+will happen only in non static method. we can constructor.but calling statement should be in another constructor.
+
+
+setters and getters--->
+setters are the method using we can intialise the non static variales.
+getters will return the value that we set by setters method.
+
+
+varType in java--->if variable var it store any kind of value in it as shown in below example.it cant be static non
+static.var cannot be used in an instance and global variable declaration.
+var can be used in a local variable declaration.
+We can declare any datatype with the var keyword
+
+
+constructor--->
+its like a method but it cannot return any value.
+Constructor should have same name as tht of class,every time object created constructor will be called.
+we can create multible constructor with different arguments is called condtructor overloading.
+
+
+return--->
+return will return the data to calling statement in void mehtod return keyword is optional it return contril to 
+calling statement.
+
+
+new--->
+it send a request to the class to create object once object created new keyword get the address and store that in reference
+variable.
+
+
+================================================================================================================================
+
+
+Primitive data types and non-primitive data types are two different types of data structures in Java.
+
+Primitive data types are basic data structures that are built into the Java language and are not objects. Examples of primitive data types include int, float, double, char, and boolean. Primitive data types have a fixed size and can be directly manipulated by the processor.
+
+Non-primitive data types, also known as reference data types, are objects that are stored on the heap rather than the stack. Non-primitive data types include arrays, strings, classes, and interfaces. Unlike primitive data types, non-primitive data types have a dynamic size and cannot be directly manipulated by the processor. Instead, they have methods that can be used to access and manipulate their data.
+
+In summary, primitive data types are simple, fast, and have a fixed size, while non-primitive data types are more complex, slower, and have a dynamic size.
+
+================================================================================================================================
+
+The garbage collector in Java is a system component that automatically frees up memory that is no longer being used by the program.
+
+In Java, objects are dynamically allocated on the heap, and once an object is no longer being used, it becomes eligible for garbage collection. The garbage collector periodically scans the heap, identifies objects that are no longer reachable (i.e., objects that cannot be accessed by the program), and frees up the memory occupied by these objects. This allows the program to continue allocating new objects without having to worry about running out of memory.
+
+The garbage collector runs as a low-priority thread in the background, and its exact behavior is determined by the Java Virtual Machine (JVM) implementation. The JVM is responsible for determining when the garbage collector should run, how long it should run, and which objects should be collected. The exact algorithm used by the JVM for garbage collection can vary, but most implementations use a mark-and-sweep algorithm, where the JVM marks all reachable objects and then frees up the memory occupied by the unmarked objects.
+
+Using the garbage collector helps simplify memory management in Java, as developers do not have to manually manage memory allocation and deallocation. However, it is important to understand the impact of the garbage collector on performance, as it can affect the response time and throughput of the program. To optimize the performance of the garbage collector, it is important to understand its behavior and to design your program to minimize the amount of memory that is used and the frequency with which objects become eligible for garbage collection.
+================================================================================================================================
+nonstatic variable--->
+create inside class outside method with static keyword.
+belongs to object 
+when object created non static variable is loaded into the object.
+Memory is allocated for these variable whenever an object is created
+
+static variable--->
+static variable created inside class but outside the method with static keyword
+located into class common memmory.
+we can access static variable anywhere in the class by using class name.object creation is not required for static member
+if the variable need to be access all over the class we can declare that static.Memory is allocated for these variable at the time of loading of the class.
+
+local variable--->
+created inside method and should be used in created method only.
+Local variables are declared in methods, constructors, or blocks.
+out side method we cant use local variable
+
+reference variable--->
+object address canbe stored inside  the reference variable.local reference variable created inside method can only Used
+only inside the mehtod
+ static reference variabl- we can create outside mehtod inside class have global access, static keyword used.
+Static reference variable can be shared across different instances of classes and can be used shared data across instances.
+
+ Java--->
+The main difference between Java and any other programming language is the unique method in which Java code is executed.
+ Unlike compiled languages such as C++, Java is compiled into bytecode which can run on any device with the Java Virtual Machine (JVM). 
+ C++, on the other hand, is compiled directly into machine code and therefore, can only run on the same platform in which it was compiled.
+Another feature is enormous amount of java class library
+Java code compile into .class then interpreted into machine code by jvm or jre
+ Java hqs Buildin thread but c dont
+ Has automatic garabage collection
+
+
+ JDK--->
+JDK is only used by Java Developers. It consists of  javc jre,jvm.jre consists of jvm and other library to run class file.only user has jvm
+
+
+ JVM--->
+JVM is responsible for executing the java program line by line hence it is also known as interpreter.
+it would run a class file that generated by the java compiler
+
+
+
+ CLASS--->
+class is user define Blue  print. Or factory which creates object.class defines the properties to the objects of method and members.In java Class name should be begin with capital letter and surrounded by curly brace
+
+
+ OBJECT--->
+Object is an real time entity it has a state/attribute (memmbers )identity(name of obj) behaviour.when object is created method and  
+Non statics member will loaded into it these are objects state behaviour
+Objects provide a structured approach to programming.
+ObjectsS aims to implement real-world entities like inheritance, hiding, polymorphism etc in programming.
+The main aim of OOP is to bind together the data and the functions that operate on them so that no other part of the code can access this data except that function.
+Flaw of procedural language the inability to reuse code throughout the program .to overcome this oops came in
+Reusability structure secure.
+
+================================================================================================================================
+
+
+when programe strat execution memory will split into two part stact and heap memory.
+Heap
+It is created by the Java Virtual Machine when it starts. The memory is used as long as the application is running. Java runtime
+uses it to allocate memory to objects and Java Runtime Environment (JRE) classes.
+Where obj are created
+If we continuously allocate memory and we do not free that memory space after use it may result in memory leakage – memory 
+is still being used but not available for other processes.so heap manage by garbage collector its automated process by jvm.
+
+
+Stack
+it maintain lifo.load the method top to bottom .
+Its maintenance program execution.methods are.loaded into stack after excution all will be removed and connection also removed( ref)
+
+The stack is a region of memory where function call frames and local variables are stored. Each time a method is called, a new frame is pushed onto the top of the stack to store the method's parameters and local variables. When the method returns, the frame is popped off the stack and the memory is freed. The stack has a limited size and is used to store small, short-lived objects and variables. Access to the stack is fast and efficient, but if too much memory is used, a stack overflow can occur, causing the program to crash.
+
+The heap is a region of memory where objects are dynamically allocated and stored. The heap is used to store objects that are long-lived or required to be shared between multiple methods or threads. The heap has a larger size than the stack, but access to the heap is slower due to the need for garbage collection to reclaim memory that is no longer used.
+
+In Java, primitive data types (such as int, float, double, etc.) are stored on the stack, while objects and arrays are stored on the heap. When a method is called and an object is passed as a parameter, a reference to the object on the heap is passed, rather than the object itself. This allows multiple methods to access the same object and share data, but also increases the likelihood of memory leaks if the references are not properly managed.
+
+
+================================================================================================================================
+what is annotation 
+
+Annotations in Java are special types of metadata that provide information about the code, but have no direct effect on the code itself. They are used to associate metadata with Java elements like classes, methods, fields, and variables. The information contained in annotations can be accessed at runtime using reflection, or used by tools and libraries for various purposes, such as code generation, testing, or debugging.
+
+what are the way to create object
+
+Using the new operator: The most common way to create
+
+Using the Class.forName() method: This method allows you to create an instance of a class by passing its fully-qualified name as a string. For example:
+
+String className = "com.example.MyClass";
+Class myClass = Class.forName(className);
+MyClass instance = (MyClass) myClass.newInstance();
+
+Using the clone() method
+MyClass original = new MyClass();
+MyClass copy = (MyClass) original.clone();
+
+FileInputStream fis = new FileInputStream("myfile.ser");
+ObjectInputStream ois = new ObjectInputStream(fis);
+MyClass obj = (MyClass) ois.readObject();
+ois.close();

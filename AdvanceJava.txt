@@ -149,7 +149,7 @@ allow using predefined tag instead of writting javacode
 JSP is Java Ser Page.
 JSTL is JSP standard tag libary to create custom tag.
 So JSTL is used to create the JSP files.
-
+<c:forEach items="${items}" var="item">
 
 Mvc--->Model view controller
 this design pattern separates an application into three main logical components.

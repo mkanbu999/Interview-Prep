@@ -161,9 +161,6 @@ mathematical funtion
 The other use of final with classes is to create an immutable class like the predefined String class.
 You can not make a class immutable without making it final.2.One is definitely to prevent inheritance, as final classes cannot be extended. For example,
  all Wrapper Classes like Integer,Float etc. are final classes. We can not extend them.
- 
-
-
 
 
 Mutable and Immutable--->
