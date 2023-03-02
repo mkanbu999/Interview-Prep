@@ -2271,5 +2271,26 @@ The reason for this is that the where() method of the CriteriaQuery interface ex
 
 The toArray() method can also be used to convert a list to an array of a different type, by passing in an array of the desired type as its argument. If the passed-in array has enough capacity to hold all the elements in the list, the elements are copied into the array; otherwise, a new array is created with the same type and size as the list.
 
+CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+CriteriaQuery<User> cq = cb.createQuery(User.class);
+
+Root<User> userRoot = cq.from(User.class);
+
+List<Predicate> predicates = new ArrayList<>();
+
+// Add filter conditions for age and name
+predicates.add(cb.greaterThanOrEqualTo(userRoot.get("age"), 18));
+predicates.add(cb.like(userRoot.get("name"), "John%"));
+
+// Combine filter conditions using 'and' operator
+Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[0]));
+
+cq.where(finalPredicate);
+cq.orderBy(cb.asc(userRoot.get("id")));
+
+TypedQuery<User> query = entityManager.createQuery(cq);
+
+List<User> userList = query.getResultList();
+
 
 ==========================================================================================================
