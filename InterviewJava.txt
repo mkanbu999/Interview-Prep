@@ -2355,6 +2355,18 @@ Check the response status code and body to see if the request was successful. If
 
 Overall, this example shows how to use query parameters to specify filter, sort, and pagination criteria when making a GET request to an endpoint.
 
+..This line is an example of a query string that might be used to specify filter, sort, and pagination criteria for a GET request to an endpoint. The query string is composed of several parameters, separated by "&":
+
+filters: This parameter specifies a list of filter conditions that should be applied to the data. The value of the filters parameter is a JSON-encoded array of filter objects, each of which has three fields: field, operator, and value. In this example, the filter condition is { "field": "firstName", "operator": "eq", "value": "John" }, which means that only records where the firstName field equals "John" will be returned.
+
+sorting: This parameter specifies a list of sort conditions that should be applied to the data. The value of the sorting parameter is a JSON-encoded array of sort objects, each of which has two fields: field and direction. In this example, the sort condition is { "field": "lastName", "direction": "asc" }, which means that the records should be sorted by the lastName field in ascending order.
+
+page: This parameter specifies the page number for pagination. In this example, the value of page is 0, which means that the first page of results should be returned.
+
+size: This parameter specifies the page size for pagination. In this example, the value of size is 10, which means that each page should contain a maximum of 10 records.
+
+Note that the exact parameter names and formats might vary depending on the specific configuration of your endpoint. Be sure to consult the API documentation for more information.
+
 
 
 ==============================================================================================================================================================
