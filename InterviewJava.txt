@@ -2294,3 +2294,67 @@ List<User> userList = query.getResultList();
 
 
 ==========================================================================================================
+
+sending request from POst man
+
+To send a request to this endpoint using Postman, you can follow these steps:
+
+Open Postman and create a new request.
+
+Set the request method to "PUT".
+
+Set the request URL to the URL of your endpoint. For example, if your endpoint is hosted at http://localhost:8080/user-invitation, set the URL to http://localhost:8080/user-invitation.
+
+Set the request body to a JSON object that contains the data to be updated. For example, if your UserInvitationDTO class has firstName, lastName, and email fields, the JSON object might look like this:
+
+perl
+Copy code
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com"
+}
+Set the request headers as needed. For example, you might set the Content-Type header to application/json to indicate that the request body is in JSON format.
+
+Send the request and wait for the response.
+
+Check the response status code and body to see if the request was successful. If the request was successful, the response body should contain the updated data in JSON format. If the request was not successful, the response body might contain an error message or other diagnostic information.
+
+Note that the exact steps and options might vary depending on the version of Postman you're using and the specific configuration of your endpoint. Be sure to consult the Postman documentation and/or your API documentation for more information.
+
+
+
+
+Mk Anbu
+@GetMapping
+	public ResponseEntity<JsonNode> getAll( @FilterParams(entity = UserInvitation.class) List<Filter> filters, @PageableParam Pageable pageable, @SortableParams(entity = UserInvitation.class) List<Sort> sortingList ) {}
+
+for this? from postman
+To send a request to this endpoint using Postman, you can follow these steps:
+
+Open Postman and create a new request.
+
+Set the request method to "GET".
+
+Set the request URL to the URL of your endpoint. For example, if your endpoint is hosted at http://localhost:8080/user-invitation, set the URL to http://localhost:8080/user-invitation.
+
+Set the request headers as needed. For example, you might set the Content-Type header to application/json to indicate that the request body is in JSON format.
+
+Set any query parameters that are needed to specify the filter, sort, and/or pagination criteria. For example, if you want to filter the results by the firstName field and sort them by the lastName field in ascending order, you might set the query parameters as follows:
+
+css
+Copy code
+?filters=[{"field":"firstName","operator":"eq","value":"John"}]&sorting=[{"field":"lastName","direction":"asc"}]&page=0&size=10
+Here, the filters parameter specifies a list of filter conditions in JSON format, the sorting parameter specifies a list of sort conditions in JSON format, and the page and size parameters specify the page number and page size for pagination.
+
+Note that the exact query parameter names and formats might vary depending on the specific configuration of your endpoint. Be sure to consult the API documentation for more information.
+
+Send the request and wait for the response.
+
+Check the response status code and body to see if the request was successful. If the request was successful, the response body should contain the requested data in JSON format. If the request was not successful, the response body might contain an error message or other diagnostic information.
+
+Overall, this example shows how to use query parameters to specify filter, sort, and pagination criteria when making a GET request to an endpoint.
+
+
+
+==============================================================================================================================================================
